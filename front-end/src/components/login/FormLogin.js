@@ -1,31 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Input from '../forms/Input';
+import useForm from '../../hooks/useForm';
+import Button from '../forms/Button';
 
-function FormLogin() {
+const FormLogin = () => {
+  const email = useForm('email');
+  const password = useForm('password');
+  const [error, setError] = React.useState(true);
+
+  React.useEffect(() => {
+    if (email.error || password.error) {
+      setError(true);
+    } else {
+      setError(false);
+    }
+  }, [email.error, password.error]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Entrou');
+  };
+
   return (
-    <form>
-      <label htmlFor="login">
-        Login
-        <input id="login" data-data-testid="common_login__input-email" />
-      </label>
+    <form onSubmit={ handleSubmit }>
+      <Input
+        label="Login"
+        dataTestId="common_login__input-email"
+        type="text"
+        name="email"
+        { ...email }
+      />
 
-      <label htmlFor="password">
-        Senha
-        <input id="password" data-testid="common_login__input-password" />
-      </label>
+      <Input
+        label="Senha"
+        dataTestId="common_login__input-password"
+        type="password"
+        name="password"
+        { ...password }
+      />
 
-      <button type="submit" data-testid="common_login__button-login">
-        Login
-      </button>
+      { error
+        ? <Button disabled data-testid="common_login__button-login">Login</Button>
+        : <Button data-testid="common_login__button-login">Login</Button>}
 
-      <Link to="/register">
-        <button type="button" data-testid="common_login__button-register">
-          Ainda Não tenho conta
-        </button>
+      <Link to="/register" data-testid="common_login__button-register">
+        Ainda Não tenho conta
       </Link>
 
     </form>
   );
-}
+};
 
 export default FormLogin;

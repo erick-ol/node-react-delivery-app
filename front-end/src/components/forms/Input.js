@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ label, type, name, value, onChange, error, onBlur }) => (
-  <div className={ styles.wrapper }>
-    <label htmlFor={ name } className={ styles.label }>
+const Input = ({ label, type, name, value, onChange, error, onBlur, dataTestId }) => (
+  <div>
+    <label htmlFor={ name }>
       {label}
     </label>
     <input
-      className={ styles.input }
+      data-testid={ dataTestId }
       type={ type }
       id={ name }
       name={ name }
@@ -15,7 +15,7 @@ const Input = ({ label, type, name, value, onChange, error, onBlur }) => (
       onChange={ onChange }
       onBlur={ onBlur }
     />
-    {error && <p className={ styles.error }>{error}</p>}
+    {(error) && <span data-testid="common_login__element-invalid-email">{error}</span>}
   </div>
 );
 

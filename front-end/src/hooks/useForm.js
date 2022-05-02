@@ -6,12 +6,16 @@ const types = {
     // /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     message: 'E-mail inválido.',
   },
+  password: {
+    regex: /^\w{6,}/,
+    message: 'Senha menor que 6 caracteres.',
+  },
   number: { regex: /^\d+$/, message: 'Apenas números.' },
 };
 
 const useForm = (type) => {
   const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState('');
+  const [error, setError] = React.useState(true);
 
   const validate = (text) => {
     if (type === false) return true;
