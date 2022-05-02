@@ -5,6 +5,6 @@
 // export default configureStore({
 //   reducer: {
 //     user
-//     product 
+//     product
 //   },
 // });
