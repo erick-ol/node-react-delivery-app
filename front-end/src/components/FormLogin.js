@@ -1,29 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function FormLogin() {
-  return(
+  return (
     <form>
-
       <label htmlFor="login">
         Login
-        <imput id="login" data-data-testid="common_login__input-email"/>
+        <input id="login" data-data-testid="common_login__input-email" />
       </label>
 
       <label htmlFor="password">
         Senha
-        <imput id="password" data-testid="common_login__input-password"/>
+        <input id="password" data-testid="common_login__input-password" />
       </label>
 
       <button type="submit" data-testid="common_login__button-login">
         Login
       </button>
 
-      <button type="button" data-testid="common_login__button-register">
-        Ainda Não tenho conta
-      </button>
+      <Link to="/register">
+        <button type="button" data-testid="common_login__button-register">
+          Ainda Não tenho conta
+        </button>
+      </Link>
 
     </form>
-  )
+  );
 }
 
-export default FormLogin
+export default FormLogin;
