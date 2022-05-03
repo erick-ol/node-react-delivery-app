@@ -1,7 +1,7 @@
 import React from 'react';
-import Input from '../forms/Input';
-import useForm from '../../hooks/useForm';
-import Button from '../forms/Button';
+import Input from '../Forms/Input';
+import useForm from '../../Hooks/useForm';
+import Button from '../Forms/Button';
 
 const FormLogin = () => {
   const email = useForm('email');

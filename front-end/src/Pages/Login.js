@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from '../components/forms/Button';
-import FormLogin from '../components/login/FormLogin';
+import Button from '../Components/Forms/Button';
+import FormLogin from '../Components/Login/LoginForm';
 
 function Login() {
   return (
