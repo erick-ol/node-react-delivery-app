@@ -1,8 +1,7 @@
-const { create } = require('../services/customerService');
 const rescue = require('express-rescue');
+const { create } = require('../services/customerService');
 const validateSchemas = require('../utils/validateSchemas');
 const userSchema = require('../schemas/userSchema');
-
 
 const registerUser = ('/', rescue(async (req, res) => {
   validateSchemas(userSchema, req.body);

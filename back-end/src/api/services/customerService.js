@@ -1,6 +1,6 @@
+const md5 = require('md5');
 const { user } = require('../../database/models');
 const { findByEmail } = require('../services/loginService');
-const md5 = require('md5');
 const { sign } = require('../utils/jwt');
 
 const USER_ALREADY_EXISTS_ERROR = new Error();
@@ -26,7 +26,7 @@ const create = async (name, email, password) => {
   const token = sign({ name, email, role: 'customer' });
     
   return token;
-}
+};
 
 module.exports = {
   create,

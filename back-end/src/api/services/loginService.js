@@ -1,6 +1,6 @@
+const md5 = require('md5');
 const { user } = require('../../database/models');
 const { sign } = require('../utils/jwt');
-const md5 = require('md5');
 
 const AUTHORIZATION_ERROR = new Error();
 AUTHORIZATION_ERROR.code = 'Unauthorized';
@@ -16,12 +16,12 @@ const findByEmail = async (email) => {
   });
 
   return data;
-}
+};
 
 const login = async (email, password) => {
-  const user = await findByEmail(email);
+  const getEmail = await findByEmail(email);
 
-  if (!user) {
+  if (!getEmail) {
     throw USER_NOT_FOUND_ERROR;
   }
   
@@ -39,4 +39,4 @@ const login = async (email, password) => {
 module.exports = {
   findByEmail,
   login,
-}
+};

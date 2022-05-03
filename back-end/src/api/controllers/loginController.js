@@ -1,5 +1,5 @@
-const { login } = require('../services/loginService');
 const rescue = require('express-rescue');
+const { login } = require('../services/loginService');
 const validateSchemas = require('../utils/validateSchemas');
 const loginSchema = require('../schemas/loginSchema');
 
