@@ -6,15 +6,7 @@ import Button from '../forms/Button';
 const FormLogin = () => {
   const email = useForm('email');
   const password = useForm('password');
-  const [error, setError] = React.useState(true);
-
-  React.useEffect(() => {
-    if (email.error || password.error) {
-      setError(true);
-    } else {
-      setError(false);
-    }
-  }, [email.error, password.error]);
+  const error = (typeof email.error === 'string') || (typeof password.error === 'string');
 
   const handleSubmit = (event) => {
     event.preventDefault();
