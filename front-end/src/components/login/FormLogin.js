@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Input from '../forms/Input';
 import useForm from '../../hooks/useForm';
 import Button from '../forms/Button';
@@ -43,11 +42,6 @@ const FormLogin = () => {
       { error
         ? <Button disabled data-testid="common_login__button-login">Login</Button>
         : <Button data-testid="common_login__button-login">Login</Button>}
-
-      <Link to="/register" data-testid="common_login__button-register">
-        Ainda Não tenho conta
-      </Link>
-
     </form>
   );
 };
