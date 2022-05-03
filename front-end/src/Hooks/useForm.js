@@ -2,7 +2,7 @@ import React from 'react';
 
 const types = {
   name: {
-    regex: /^\w{12,}/,
+    regex: /^[A-Za-z0-9\s$&+,:;=?@#|'<>.^*()%!-]{12,}$/,
     message: 'Nome menor que 12 caracteres.',
   },
   email: {
