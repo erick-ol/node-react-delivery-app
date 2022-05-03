@@ -1,5 +1,4 @@
 const { findByEmail } = require('../services/loginService');
-const router = require('express').Router();
 const rescue = require('express-rescue');
 
 const login = ('/', rescue(async (req, res) => {
