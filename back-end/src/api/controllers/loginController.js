@@ -10,7 +10,7 @@ const loginController = ('/', rescue(async (req, res) => {
   
   const token = await login(email, password);
 
-  return res.status(200).json(token);
+  return res.status(200).json({ token });
 }));
 
 module.exports = {

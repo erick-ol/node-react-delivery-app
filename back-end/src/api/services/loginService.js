@@ -1,9 +1,6 @@
 const { user } = require('../../database/models');
 const { sign } = require('../utils/jwt');
-
-const USER_ALREADY_EXISTS_ERROR = new Error();
-USER_ALREADY_EXISTS_ERROR.code = 'AlreadyExists';
-USER_ALREADY_EXISTS_ERROR.message = 'User already registered';
+const md5 = require('md5');
 
 const AUTHORIZATION_ERROR = new Error();
 AUTHORIZATION_ERROR.code = 'Unauthorized';
@@ -23,8 +20,14 @@ const findByEmail = async (email) => {
 
 const login = async (email, password) => {
   const user = await findByEmail(email);
+
+  if (!user) {
+    throw USER_NOT_FOUND_ERROR;
+  }
   
-  if (!user || password !== user.password) {
+  const cryptedPassword = md5(password);
+  
+  if (cryptedPassword !== user.password) {
       throw AUTHORIZATION_ERROR;
   }
   
