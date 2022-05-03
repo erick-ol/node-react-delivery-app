@@ -1,12 +1,25 @@
-const { findByEmail } = require('../services/loginService');
+const { login } = require('../services/loginService');
 const rescue = require('express-rescue');
+const loginSchema = require('../schemas/loginSchema');
 
-const login = ('/', rescue(async (req, res) => {
-  const { email } = req.body;
-  const user = await findByEmail(email);
-  return res.status(200).json(user);
+const validateLoginSchema = (body) => {
+  const { error } = loginSchema.validate(body);
+
+  if (error) {
+      throw error;
+  }
+};
+
+const loginController = ('/', rescue(async (req, res) => {
+  validateLoginSchema(req.body);
+
+  const { email, password } = req.body;
+  
+  const token = await login(email, password);
+
+  return res.status(200).json(token);
 }));
 
 module.exports = {
-  login, 
+  loginController, 
 };
