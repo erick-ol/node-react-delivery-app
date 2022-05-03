@@ -1,13 +1,11 @@
-// import route from './routes/index.routes';
-// import bodyParser from 'body-parser';
-// const express = require('express');
+const express = require('express');
+const routes = require('./routes');
+const app = express();
 
+app.use(express.json());
 
-// const app = express();
-
-// app.use(bodyParser.json());
-// app.use(route);
+app.use('/login', routes.loginRouter);
 
 // // app.get('/coffee', (_req, res) => res.status(418).end());
 
-// module.exports = app;
+module.exports = app;
