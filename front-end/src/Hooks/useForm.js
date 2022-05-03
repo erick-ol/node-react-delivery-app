@@ -1,6 +1,10 @@
 import React from 'react';
 
 const types = {
+  name: {
+    regex: /^\w{12,}/,
+    message: 'Nome menor que 12 caracteres.',
+  },
   email: {
     regex: /\S+@\S+\.\S+/,
     // /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

@@ -20,6 +20,7 @@ const FormLogin = () => {
         dataTestId="common_login__input-email"
         type="text"
         name="email"
+        page="login"
         { ...email }
       />
 
@@ -28,6 +29,7 @@ const FormLogin = () => {
         dataTestId="common_login__input-password"
         type="password"
         name="password"
+        page="login"
         { ...password }
       />
 
