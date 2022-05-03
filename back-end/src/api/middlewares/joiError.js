@@ -1,14 +1,12 @@
 const Joi = require('joi');
 
-module.exports = (err, _req, res, _next) => {
-  if (Joi.isError(err)) {
-    return res.status(400).json({ message: err.message });
-  }
+module.exports = (err, _req, res, next) => {
+  if (!Joi.isError(err)) return next(err);
 
-  const mapError = {
-    categoriesId: 400,
+  const error = {
+      code: 'UnprocessableEntity',
+      message: err.message,
   };
 
-  const status = mapError[err.code] || 500;
-  return res.status(status).json({ message: err.message });
+  return res.status(400).json({ message: error.message });
 };

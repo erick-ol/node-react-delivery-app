@@ -1,17 +1,10 @@
 const { login } = require('../services/loginService');
 const rescue = require('express-rescue');
+const validateSchemas = require('../utils/validateSchemas');
 const loginSchema = require('../schemas/loginSchema');
 
-const validateLoginSchema = (body) => {
-  const { error } = loginSchema.validate(body);
-
-  if (error) {
-      throw error;
-  }
-};
-
 const loginController = ('/', rescue(async (req, res) => {
-  validateLoginSchema(req.body);
+  validateSchemas(loginSchema, req.body);
 
   const { email, password } = req.body;
   

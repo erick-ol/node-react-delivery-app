@@ -7,7 +7,7 @@ USER_ALREADY_EXISTS_ERROR.message = 'User already registered';
 
 const AUTHORIZATION_ERROR = new Error();
 AUTHORIZATION_ERROR.code = 'Unauthorized';
-AUTHORIZATION_ERROR.message = 'Invalid fields';
+AUTHORIZATION_ERROR.message = 'Wrong email or password';
 
 const USER_NOT_FOUND_ERROR = new Error();
 USER_NOT_FOUND_ERROR.code = 'NotFound';
