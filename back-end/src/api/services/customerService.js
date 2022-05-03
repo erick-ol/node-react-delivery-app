@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const { user } = require('../../database/models');
-const { findByEmail } = require('../services/loginService');
+const { findByEmail } = require('./loginService');
 const { sign } = require('../utils/jwt');
 
 const USER_ALREADY_EXISTS_ERROR = new Error();
