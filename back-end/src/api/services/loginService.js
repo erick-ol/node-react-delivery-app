@@ -27,7 +27,7 @@ const login = async (email, password) => {
   
   const cryptedPassword = md5(password);
   
-  if (cryptedPassword !== user.password) {
+  if (cryptedPassword !== userByEmail.dataValues.password) {
       throw AUTHORIZATION_ERROR;
   }
   
