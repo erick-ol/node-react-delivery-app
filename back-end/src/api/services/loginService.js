@@ -17,7 +17,6 @@ const findByEmail = async (email) => {
 
   return data;
 };
-
 const login = async (email, password) => {
 
   const getEmail = await findByEmail(email);
@@ -29,7 +28,7 @@ const login = async (email, password) => {
   
   const cryptedPassword = md5(password);
   
-  if (cryptedPassword !== userByEmail.dataValues.password) {
+  if (cryptedPassword !== getEmail.dataValues.password) {
       throw AUTHORIZATION_ERROR;
   }
   
