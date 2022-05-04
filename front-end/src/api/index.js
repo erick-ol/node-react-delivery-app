@@ -10,3 +10,14 @@ export const LOGIN_POST = (body) => ({
     body: JSON.stringify(body),
   },
 });
+
+export const REGISTER_POST = (body) => ({
+  url: `${API_URL}/register`,
+  options: {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  },
+});
