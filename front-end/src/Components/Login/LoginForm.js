@@ -1,21 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Input from '../forms/Input';
-import useForm from '../../hooks/useForm';
-import Button from '../forms/Button';
+import Input from '../Forms/Input';
+import useForm from '../../Hooks/useForm';
+import Button from '../Forms/Button';
 
 const FormLogin = () => {
   const email = useForm('email');
   const password = useForm('password');
-  const [error, setError] = React.useState(true);
-
-  React.useEffect(() => {
-    if (email.error || password.error) {
-      setError(true);
-    } else {
-      setError(false);
-    }
-  }, [email.error, password.error]);
+  const error = (typeof email.error === 'string') || (typeof password.error === 'string');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,6 +20,7 @@ const FormLogin = () => {
         dataTestId="common_login__input-email"
         type="text"
         name="email"
+        page="login"
         { ...email }
       />
 
@@ -37,17 +29,13 @@ const FormLogin = () => {
         dataTestId="common_login__input-password"
         type="password"
         name="password"
+        page="login"
         { ...password }
       />
 
       { error
         ? <Button disabled data-testid="common_login__button-login">Login</Button>
         : <Button data-testid="common_login__button-login">Login</Button>}
-
-      <Link to="/register" data-testid="common_login__button-register">
-        Ainda Não tenho conta
-      </Link>
-
     </form>
   );
 };
