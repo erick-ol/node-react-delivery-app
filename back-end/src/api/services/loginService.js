@@ -22,7 +22,6 @@ const login = async (email, password) => {
   const getEmail = await findByEmail(email);
 
   if (!getEmail) {
-
     throw USER_NOT_FOUND_ERROR;
   }
   

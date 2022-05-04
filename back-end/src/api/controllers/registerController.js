@@ -13,10 +13,9 @@ const registerUser = ('/', rescue(async (req, res) => {
 
   const findUser = await findByEmail(email);
 
-  if (findUser) res.status(409).json( { message: 'User already registered' })
+  if (findUser) res.status(409).json({ message: 'User already registered' });
 
   return res.status(201).json({ token });
-
 }));
 
 module.exports = {

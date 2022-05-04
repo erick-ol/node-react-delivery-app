@@ -1,10 +1,10 @@
-const product = require('../../database/models/product');
+const { product } = require('../../database/models');
 
 const getAll = async () => {
   const products = await product.findAll();
 
-  return products.map((product) => product.dataValues);
-}
+  return products;
+};
 
 module.exports = {
   getAll,
