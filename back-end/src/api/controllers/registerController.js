@@ -12,9 +12,10 @@ const registerUser = ('/', rescue(async (req, res) => {
   const token = await create(name, email, password);
 
   const findUser = await findByEmail(email);
-  findUser.dataValues.email === email || findUser.dataValues.name === name 
-    ? res.status(409).json( { message:'User already registered' })
-    : res.status(201).json({ token });
+
+  if (findUser) res.status(409).json( { message: 'User already registered' })
+
+  return res.status(201).json({ token });
 
 }));
 
