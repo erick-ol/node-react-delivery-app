@@ -17,12 +17,11 @@ const findByEmail = async (email) => {
 
   return data;
 };
-const login = async (email, password) => {
 
+const login = async (email, password) => {
   const getEmail = await findByEmail(email);
 
   if (!getEmail) {
-
     throw USER_NOT_FOUND_ERROR;
   }
   

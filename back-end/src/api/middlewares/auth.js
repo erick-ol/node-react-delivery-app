@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 const userService = require('../services/loginService');
 
-const { JWT_SECRET } = process.env;
+const JWT_SECRET = fs.readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 
 const NOT_FOUND_ERROR = new Error();
 NOT_FOUND_ERROR.code = 'AlreadyExists';

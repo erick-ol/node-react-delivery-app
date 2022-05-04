@@ -10,6 +10,7 @@ app.use(cors());
 
 app.use('/login', routes.loginRouter);
 app.use('/register', routes.registerRouter);
+app.use('/customer/products', routes.productRouter);
 
 app.use(middlewares.joiError);
 app.use(middlewares.domainError);
