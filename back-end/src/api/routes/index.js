@@ -4,4 +4,4 @@ const registerRouter = require('./register');
 module.exports = {
   loginRouter,
   registerRouter,
-}
+};

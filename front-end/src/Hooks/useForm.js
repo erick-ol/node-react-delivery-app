@@ -1,6 +1,10 @@
 import React from 'react';
 
 const types = {
+  name: {
+    regex: /^[A-Za-z0-9\s$&+,:;=?@#|'<>.^*()%!-]{12,}$/,
+    message: 'Nome menor que 12 caracteres.',
+  },
   email: {
     regex: /\S+@\S+\.\S+/,
     // /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -15,7 +19,7 @@ const types = {
 
 const useForm = (type) => {
   const [value, setValue] = React.useState('');
-  const [error, setError] = React.useState(true);
+  const [error, setError] = React.useState('');
 
   const validate = (text) => {
     if (type === false) return true;
@@ -32,7 +36,7 @@ const useForm = (type) => {
   };
 
   const onChange = ({ target }) => {
-    if (error) validate(target.value);
+    validate(target.value);
     setValue(target.value);
   };
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 
-// consulta ao - https://v5.reactrouter.com/web/api/Redirect
 function App() {
   return (
     <div>
