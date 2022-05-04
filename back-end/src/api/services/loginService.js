@@ -19,15 +19,17 @@ const findByEmail = async (email) => {
 };
 
 const login = async (email, password) => {
+
   const getEmail = await findByEmail(email);
 
   if (!getEmail) {
+
     throw USER_NOT_FOUND_ERROR;
   }
   
   const cryptedPassword = md5(password);
   
-  if (cryptedPassword !== user.password) {
+  if (cryptedPassword !== userByEmail.dataValues.password) {
       throw AUTHORIZATION_ERROR;
   }
   
