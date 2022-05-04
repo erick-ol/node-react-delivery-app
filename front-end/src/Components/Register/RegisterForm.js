@@ -1,20 +1,38 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from '../Forms/Input';
 import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
+import { registerPost, resetRegisterState } from '../../store/register';
 
 const RegisterForm = () => {
   const email = useForm('email');
   const password = useForm('password');
   const name = useForm('name');
-  const error = (typeof email.error === 'string')
+  const errorValidation = (typeof email.error === 'string')
   || (typeof password.error === 'string')
   || (typeof name.error === 'string');
+  const navigate = useNavigate();
+
+  // redux
+  const dispatch = useDispatch();
+  const { loading, data, error } = useSelector((state) => state.register);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Cadastrou');
+    dispatch(registerPost(
+      { name: name.value, email: email.value, password: password.value },
+    ));
   };
+
+  React.useEffect(() => {
+    if (data) {
+      window.localStorage.setItem('token', data.token);
+      dispatch(resetRegisterState());
+      navigate('/customer/products');
+    }
+  }, [data, navigate, dispatch]);
 
   return (
     <form onSubmit={ handleSubmit }>
@@ -45,9 +63,13 @@ const RegisterForm = () => {
         { ...password }
       />
 
-      { error
+      { errorValidation
         ? <Button disabled data-testid="common_register__button-register">Signup</Button>
         : <Button data-testid="common_register__button-register">Signup</Button>}
+
+      { error && <p data-testid="common_register__element-invalid_register">{error}</p> }
+
+      { loading && <p>Loading...</p> }
     </form>
   );
 };

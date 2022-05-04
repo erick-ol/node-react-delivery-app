@@ -1,17 +1,36 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Input from '../Forms/Input';
 import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
+import { loginPost, resetLoginState } from '../../store/login';
 
 const FormLogin = () => {
   const email = useForm('email');
   const password = useForm('password');
-  const error = (typeof email.error === 'string') || (typeof password.error === 'string');
+  const errorValidation = (typeof email.error === 'string')
+  || (typeof password.error === 'string');
+  const navigate = useNavigate();
+
+  // redux
+  const dispatch = useDispatch();
+  const { loading, data, error } = useSelector((state) => state.login);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Entrou');
+    dispatch(loginPost(
+      { email: email.value, password: password.value },
+    ));
   };
+
+  React.useEffect(() => {
+    if (data) {
+      window.localStorage.setItem('token', data.token);
+      dispatch(resetLoginState());
+      navigate('/customer/products');
+    }
+  }, [data, navigate, dispatch]);
 
   return (
     <form onSubmit={ handleSubmit }>
@@ -33,9 +52,13 @@ const FormLogin = () => {
         { ...password }
       />
 
-      { error
+      { errorValidation
         ? <Button disabled data-testid="common_login__button-login">Login</Button>
         : <Button data-testid="common_login__button-login">Login</Button>}
+
+      { error && <p data-testid="common_login__element-invalid-email">{error}</p> }
+
+      { loading && <p>Loading...</p> }
     </form>
   );
 };
