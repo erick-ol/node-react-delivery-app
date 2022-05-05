@@ -49,7 +49,7 @@ module.exports = {
         type: Sequelize.DATE,
       },
       status: {
-        allowNull: true,
+        allowNull: false,
         type: Sequelize.STRING,
         defaultValue: 'Pendente'
       }

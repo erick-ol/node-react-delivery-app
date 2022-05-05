@@ -15,7 +15,7 @@ module.exports = {
           key: 'id'
         }
       },
-      saleId: {
+      productId: {
         allowNull: false,
         primaryKey: true,
         field: 'product_id',
@@ -34,6 +34,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('salesproducts');
+    await queryInterface.dropTable('salesProducts');
   }
 };

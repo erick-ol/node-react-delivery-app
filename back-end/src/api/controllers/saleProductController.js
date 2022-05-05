@@ -1,10 +1,10 @@
 const rescue = require('express-rescue');
-const { create } = require('../services/saleProductService');
+const { createSaleProduct } = require('../services/saleProductService');
 
 const saleProductController = ('/', rescue(async (req, res) => {
   const { id } = req.params;
   const { quantity } = req.body;
-  const saleId = await create(id, quantity);
+  const saleId = await createSaleProduct(id, quantity);
 
   return res.status(201).json(saleId);
 }));

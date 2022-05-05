@@ -1,13 +1,14 @@
-const { saleproduct } = require('../../database/models');
+const {SaleProduct} = require('../../database/models/saleproduct');
 
 const SALE_PRODUCT_ID = 'product_id';
 
-const create = async (id, quantity) => {
-  const product = await saleproduct.insertOne({ [SALE_PRODUCT_ID]: id, quantity });
-
+const createSaleProduct = async (id, quantity) => {
+  console.log('antes', SaleProduct );
+  const product = await SaleProduct.create({ [SALE_PRODUCT_ID]: id, quantity });
+  console.log(product);
   return product.product_id;
 };
 
 module.exports = {
-  create,
+  createSaleProduct,
 };
