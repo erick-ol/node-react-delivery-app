@@ -1,12 +1,12 @@
 import React from 'react';
-import { CustomerNavbar } from '../components/CustomerNavbar';
+import { CustomerNavbar } from '../Components/CustomerNavbar';
 
 function Product() {
   return (
     <main>
-        <div>
-          <CustomerNavbar />
-        </div>
+      <div>
+        <CustomerNavbar />
+      </div>
     </main>
   );
 }
