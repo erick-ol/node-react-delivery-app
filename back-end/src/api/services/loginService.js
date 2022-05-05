@@ -19,10 +19,10 @@ const findByEmail = async (email) => {
 };
 
 const findByName = async (name) => {
-  const user = await user.findOne({where: { name }});
+  const userName = await user.findOne({ where: { name } });
 
-  return user;
-}
+  return userName;
+};
 
 const login = async (email, password) => {
   const getEmail = await findByEmail(email);
