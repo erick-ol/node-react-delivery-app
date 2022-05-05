@@ -18,6 +18,12 @@ const findByEmail = async (email) => {
   return data;
 };
 
+const findByName = async (name) => {
+  const user = await user.findOne({where: { name }});
+
+  return user;
+}
+
 const login = async (email, password) => {
   const getEmail = await findByEmail(email);
 
@@ -38,5 +44,6 @@ const login = async (email, password) => {
 
 module.exports = {
   findByEmail,
+  findByName,
   login,
 };

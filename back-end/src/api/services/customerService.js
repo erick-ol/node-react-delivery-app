@@ -1,6 +1,6 @@
 const md5 = require('md5');
 const { user } = require('../../database/models');
-const { findByEmail } = require('./loginService');
+const { findByEmail, findByName } = require('./loginService');
 const { sign } = require('../utils/jwt');
 
 const USER_ALREADY_EXISTS_ERROR = new Error();
@@ -9,8 +9,9 @@ USER_ALREADY_EXISTS_ERROR.message = 'User already registered';
 
 const create = async (name, email, password) => {
   const getEmail = await findByEmail(email);
+  const getName = await findByName(name);
 
-  if (getEmail) {
+  if (getEmail || getName) {
     throw USER_ALREADY_EXISTS_ERROR;
   }
 
