@@ -1,5 +1,5 @@
 // const { DataTypes } = require('sequelize');
-
+// test
 // module.exports = (sequelize) => {
 //   const SaleProduct = sequelize.define('salesProduct', { 
 //   //   saleId: {
