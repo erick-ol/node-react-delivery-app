@@ -5,6 +5,7 @@ const saleProductController = ('/', rescue(async (req, res) => {
   try {
     // const { id } = req.params;
     // const { quantity } = req.body;
+    console.log(req.body);
     const saleId = await createSale(req.body);
   
     return res.status(201).json(saleId);
