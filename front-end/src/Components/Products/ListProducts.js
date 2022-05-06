@@ -1,11 +1,13 @@
 import React from 'react';
-import { ProductCard } from '../Products/ProductCard';
+import ProductCard from './ProductCard';
 
 export function ListProducts() {
   return (
     <div className="product-card-container">
       <ProductCard />
-      <button type="button" data-testid="customer_products__button-cart"
+      <button
+        type="button"
+        data-testid="customer_products__button-cart"
       >
         Total
       </button>

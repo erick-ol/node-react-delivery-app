@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomerNavbar } from '../Components/CustomerNavbar';
+import { CustomerNavbar } from '../Components/Products/CustomerNavbar';
 import { ListProducts } from '../Components/Products/ListProducts';
 
 function Product() {
