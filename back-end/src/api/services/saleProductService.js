@@ -1,10 +1,10 @@
-const { saleProduct } = require('../../database/models/saleproduct');
+const { SalesProduct } = require('../../database/models');
 
 const SALE_PRODUCT_ID = 'product_id';
 
-const createSaleProduct = async (id, quantity) => {
-  console.log('antes', saleProduct);
-  const product = await saleProduct.create({ [SALE_PRODUCT_ID]: id, quantity });
+const createSaleProduct = async (id, quantity, saleId) => {
+  console.log('antes', SalesProduct);
+  const product = await SalesProduct.bulkInsert([{}]);
   console.log(product);
   return product.product_id;
 };
