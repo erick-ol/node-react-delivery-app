@@ -14,7 +14,7 @@ const newCostumer = async (bodyRequest) => {
 
   const [userRegistered, created] = await user.findOrCreate({
     where: { email },
-    defaults: { name, email, password: encryptedPassword, role: 'customer' }
+    defaults: { name, email, password: encryptedPassword, role: 'customer' },
   });
 
   if (!created) {
@@ -27,7 +27,7 @@ const newCostumer = async (bodyRequest) => {
     name: userRegistered.name,
     email: userRegistered.email,
     role: 'costumer',
-    token
+    token,
   };
 };
 
