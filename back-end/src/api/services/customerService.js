@@ -1,34 +1,39 @@
 const md5 = require('md5');
 const { user } = require('../../database/models');
-const { findByEmail, findByName } = require('./loginService');
+// const { findByEmail, findByName } = require('./loginService');
 const { sign } = require('../utils/jwt');
 
 const USER_ALREADY_EXISTS_ERROR = new Error();
-USER_ALREADY_EXISTS_ERROR.code = 'AlreadyExists';
+USER_ALREADY_EXISTS_ERROR.code = 'Conflict';
 USER_ALREADY_EXISTS_ERROR.message = 'User already registered';
 
-const create = async (name, email, password) => {
-  const getEmail = await findByEmail(email);
-  const getName = await findByName(name);
+const newCostumer = async (bodyRequest) => {
+  const { name, email, password } = bodyRequest;
 
-  if (getEmail || getName) {
+  const encryptedPassword = md5(password);
+
+  const [userRegistered, created] = await user.findOrCreate({
+    where: { email },
+    defaults: { name, email, password: encryptedPassword, role: 'customer' }
+  });
+
+  if (!created) {
     throw USER_ALREADY_EXISTS_ERROR;
   }
 
-  const cryptoPassword = md5(password);
+  const token = sign({ name, email, password });
 
-  await user.create({
-    name,
-    email,
-    password: cryptoPassword,
-    role: 'customer',
-  });
-  
-  const token = sign({ name, email, role: 'customer' });
-    
-  return token;
+  return {
+    name: userRegistered.name,
+    email: userRegistered.email,
+    role: 'costumer',
+    token
+  };
 };
 
 module.exports = {
-  create,
+  newCostumer,
 };
+
+// findOrCreate function:
+// https://sebhastian.com/sequelize-findorcreate/
