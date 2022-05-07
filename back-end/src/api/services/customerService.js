@@ -13,11 +13,11 @@ const newCostumer = async (bodyRequest) => {
   const encryptedPassword = md5(password);
 
   const [userRegistered, created] = await user.findOrCreate({
-    where: { email },
-    defaults: { name, email, password: encryptedPassword, role: 'customer' },
+    where: { name },
+    defaults: { name, email, password: encryptedPassword, role: 'customer' }
   });
 
-  if (!created) {
+  if (!created || userRegistered.email) {
     throw USER_ALREADY_EXISTS_ERROR;
   }
 
