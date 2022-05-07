@@ -24,7 +24,6 @@ const findByName = async (name) => {
   return userName;
 };
 
-
 const login = async (email, password) => {
   const getEmail = await findByEmail(email);
 
