@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const Op = require('sequelize').Op;
 const { user } = require('../../database/models');
 // const { findByEmail, findByName } = require('./loginService');
 const { sign } = require('../utils/jwt');
@@ -13,11 +14,11 @@ const newCostumer = async (bodyRequest) => {
   const encryptedPassword = md5(password);
 
   const [userRegistered, created] = await user.findOrCreate({
-    where: { name },
+    where: { [Op.or]: [{ name }, { email }] },
     defaults: { name, email, password: encryptedPassword, role: 'customer' },
   });
 
-  if (!created || userRegistered.email) {
+  if (!created) {
     throw USER_ALREADY_EXISTS_ERROR;
   }
 
@@ -26,7 +27,7 @@ const newCostumer = async (bodyRequest) => {
   return {
     name: userRegistered.name,
     email: userRegistered.email,
-    role: 'costumer',
+    role: 'customer',
     token,
   };
 };
