@@ -4,7 +4,7 @@ const { user } = require('../../database/models');
 const { sign } = require('../utils/jwt');
 
 const USER_ALREADY_EXISTS_ERROR = new Error();
-USER_ALREADY_EXISTS_ERROR.code = 'Conflict';
+USER_ALREADY_EXISTS_ERROR.code = 'AlreadyExists';
 USER_ALREADY_EXISTS_ERROR.message = 'User already registered';
 
 const newCostumer = async (bodyRequest) => {

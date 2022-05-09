@@ -12,6 +12,7 @@ app.use('/login', routes.loginRouter);
 app.use('/register', routes.registerRouter);
 app.use('/customer/products', routes.productRouter);
 app.use('/customer/orders/', routes.saleProductRouter);
+app.use('/images', routes.imageRouter);
 
 app.use(middlewares.joiError);
 app.use(middlewares.domainError);

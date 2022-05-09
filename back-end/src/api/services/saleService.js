@@ -7,22 +7,27 @@ const createSale = async (
     seller, 
     total_price: totalPrice, 
     delivery_address: deliveryAddress, 
-    delivery_number: deliveryNumber, saleDate, 
+    delivery_number: deliveryNumber,
   },
   ) => {
-  console.log(seller);
   const saleId = await getSellerId(seller);
-  console.log(saleId);
 
   const product = await sale.create(
       { 
-          userId, sellerId: userId, totalPrice, deliveryAddress, deliveryNumber, saleDate,
+          userId, sellerId: saleId, totalPrice, deliveryAddress, deliveryNumber
       },
     );
-  console.log(product);
-  return product;
+
+  return product.dataValues.id;
+};
+
+const getSaleById = async (id) => {
+  const saleData = sale.findOne({ where: { id } });
+
+  return saleData;
 };
 
 module.exports = { 
   createSale,
+  getSaleById,
 };
