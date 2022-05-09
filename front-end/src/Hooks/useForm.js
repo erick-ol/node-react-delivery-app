@@ -2,7 +2,7 @@ import React from 'react';
 
 const types = {
   name: {
-    regex: /^[A-Za-z0-9\s$&+,:;=?@#|'<>.^*()%!-]{12,}$/,
+    regex: /^[A-Za-z0-9\u00C0-\u00FF\s$&+,:;=?@#|'<>.^*()%!-]{12,}$/,
     message: 'Nome menor que 12 caracteres.',
   },
   email: {
@@ -11,7 +11,7 @@ const types = {
     message: 'E-mail inválido.',
   },
   password: {
-    regex: /^\w{6,}/,
+    regex: /^[A-Za-z0-9\s$&+,:;=?@#|'<>.^*()%!-]{6,}$/,
     message: 'Senha menor que 6 caracteres.',
   },
   number: { regex: /^\d+$/, message: 'Apenas números.' },
