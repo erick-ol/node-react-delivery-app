@@ -1,32 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function ProductCard() {
+const ProductCard = ({ product }) => {
+  const { id, name, price, urlImage } = product;
+
   return (
     <section className="product-card-container">
       <div className="product-card-image-container">
         <p
           className="product-price"
-          data-testid="customer_products__element-card-price-id"
+          data-testid={ `customer_products__element-card-price-${id}` }
         >
-          preço
-
+          {price}
         </p>
         <img
-          src="urlImage"
-          alt="name"
-          data-testid="customer_products__img-card-bg-image-id"
+          src={ urlImage }
+          alt={ name }
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
         />
       </div>
       <div className="product-card-quantity-container">
         <p
           className="product-name"
-          data-testid="customer_products__element-card-title-id"
+          data-testid={ `customer_products__element-card-title-${id}` }
         >
-          nome
+          {name}
         </p>
         <div className="product-card-quantity-input-container">
           <button
-            data-testid="customer_products__button-card-rm-item-id"
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
             // onClick={ () => { decrement(); } }
           >
@@ -35,11 +37,11 @@ function ProductCard() {
           <label htmlFor="count-input">
             <input
               id="count-input"
-              data-testid="customer_products__input-card-quantity-id"
+              data-testid={ `customer_products__input-card-quantity-${id}` }
             />
           </label>
           <button
-            data-testid="customer_products__button-card-add-item-id"
+            data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
             // onClick={ () => { increment(); } }
           >
@@ -49,6 +51,15 @@ function ProductCard() {
       </div>
     </section>
   );
-}
+};
+
+ProductCard.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.string,
+    urlImage: PropTypes.string,
+  }),
+}.isRequired;
 
 export default ProductCard;
