@@ -1,7 +1,6 @@
 const md5 = require('md5');
 const { Op } = require('sequelize');
 const { user } = require('../../database/models');
-// const { findByEmail, findByName } = require('./loginService');
 const { sign } = require('../utils/jwt');
 
 const USER_ALREADY_EXISTS_ERROR = new Error();
