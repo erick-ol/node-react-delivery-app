@@ -11,7 +11,7 @@ const types = {
     message: 'E-mail inválido.',
   },
   password: {
-    regex: /^[A-Za-z0-9\s$&+,:;=?@#|'<>.^*()%!-]{6,}$/,
+    regex: /^[A-Za-z0-9\s$&+,_:;=?@#|'<>.^*()%!-]{6,}$/,
     message: 'Senha menor que 6 caracteres.',
   },
   number: { regex: /^\d+$/, message: 'Apenas números.' },
