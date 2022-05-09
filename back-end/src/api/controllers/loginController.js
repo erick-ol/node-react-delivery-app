@@ -5,7 +5,6 @@ const loginSchema = require('../schemas/loginSchema');
 
 const loginController = ('/', rescue(async (req, res) => {
   validateSchemas(loginSchema, req.body);
-  /* teste */
 
   const { email, password } = req.body;
 
