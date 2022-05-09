@@ -20,8 +20,6 @@ const getById = ('/', rescue(async (req, res) => {
   return res.status(200).json(sale);
 }));
 
-
-
 module.exports = {
   createSaleController,
   getById,

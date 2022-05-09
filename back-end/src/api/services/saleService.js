@@ -14,7 +14,7 @@ const createSale = async (
 
   const product = await sale.create(
       { 
-          userId, sellerId: saleId, totalPrice, deliveryAddress, deliveryNumber
+          userId, sellerId: saleId, totalPrice, deliveryAddress, deliveryNumber,
       },
     );
 
