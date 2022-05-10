@@ -13,10 +13,10 @@ app.use('/register', routes.registerRouter);
 app.use('/customer/products', routes.productRouter);
 app.use('/customer/orders/', routes.saleProductRouter);
 app.use('/images', routes.imageRouter);
+app.use('/seller', routes.getSaleBySeller);
 
 app.use(middlewares.joiError);
 app.use(middlewares.domainError);
 // app.get('/coffee', (_req, res) => res.status(418).end());
-// comentário
 
 module.exports = app;

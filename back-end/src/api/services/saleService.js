@@ -1,6 +1,10 @@
 const { sale } = require('../../database/models');
 const { getSellerId } = require('./userService');
 
+const NOT_FOUND = new Error();
+NOT_FOUND.code = 'NotFound';
+NOT_FOUND.message = 'Seller not found';
+
 const createSale = async (
   { 
     userId, 
@@ -27,7 +31,18 @@ const getSaleById = async (id) => {
   return saleData;
 };
 
+const getSaleBySellerId = async (id) => {
+  const saleBySellerId = await sale.findAll({ where: { seller_id: id } });
+  
+  if (saleBySellerId.length === 0) {
+    throw NOT_FOUND;
+  }
+
+  return saleBySellerId;
+}
+
 module.exports = { 
   createSale,
   getSaleById,
+  getSaleBySellerId,
 };
