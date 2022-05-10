@@ -39,7 +39,12 @@ const login = async (email, password) => {
   
   const token = sign({ email });
   
-  return token;
+  return {
+    name: getEmail.dataValues.name,
+    email: getEmail.dataValues.email,
+    role: getEmail.dataValues.role,
+    token,
+  };
 };
 
 module.exports = {
