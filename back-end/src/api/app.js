@@ -17,5 +17,6 @@ app.use('/images', routes.imageRouter);
 app.use(middlewares.joiError);
 app.use(middlewares.domainError);
 // app.get('/coffee', (_req, res) => res.status(418).end());
+// comentário
 
 module.exports = app;
