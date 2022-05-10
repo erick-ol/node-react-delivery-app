@@ -3,7 +3,7 @@ const registerRouter = require('./register');
 const productRouter = require('./product');
 const saleProductRouter = require('./saleProduct');
 const imageRouter = require('./images');
-const sellerRouter = require('./saleProduct')
+const sellerRouter = require('./saleProduct');
 
 module.exports = {
   loginRouter,

@@ -32,31 +32,28 @@ const getSaleById = async (id) => {
 };
 
 const getSaleBySellerId = async (id) => {
-  const saleBySellerId = await sale.findAll({ where: { seller_id: id } });
+  const saleBySellerId = await sale.findAll({ where: { sellerId: id } });
   
   if (saleBySellerId.length === 0) {
     throw NOT_FOUND;
   }
 
   return saleBySellerId;
-}
+};
 
 const updatePreparing = async (id) => {
-  const saleId = await sale.update({ status: "Preparando" }, {
-    where: { id }
-  }
-);
+  const saleId = await sale.update({ status: 'Preparando' }, {
+    where: { id },
+  });
   return saleId;
-}
-
+};
 
 const updateTransit = async (id) => {
-  const saleId = await sale.update({ status: "Em Trânsito" }, {
-    where: { id }
-  }
-);
+  const saleId = await sale.update({ status: 'Em Trânsito' }, {
+    where: { id },
+  });
   return saleId;
-}
+};
 
 module.exports = { 
   createSale,

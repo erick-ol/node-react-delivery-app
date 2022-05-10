@@ -1,5 +1,10 @@
 const rescue = require('express-rescue');
-const { createSale, getSaleById, getSaleBySellerId, updatePreparing, updateTransit } = require('../services/saleService');
+const { 
+  createSale, 
+  getSaleById, 
+  getSaleBySellerId, 
+  updatePreparing, 
+  updateTransit } = require('../services/saleService');
 
 const createSaleController = ('/', rescue(async (req, res) => {
   try {
@@ -32,7 +37,7 @@ const updateSalePreparing = ('/', rescue(async (req, res) => {
   const salePreparing = await updatePreparing(id);
 
   return res.status(201).json(salePreparing);
-}))
+}));
 
 const updateSaleTransit = ('/', rescue(async (req, res) => {
   const { id } = req.params;
@@ -40,7 +45,7 @@ const updateSaleTransit = ('/', rescue(async (req, res) => {
   const saleDelivering = await updateTransit(id);
 
   return res.status(201).json(saleDelivering);
-}))
+}));
 
 module.exports = {
   createSaleController,
