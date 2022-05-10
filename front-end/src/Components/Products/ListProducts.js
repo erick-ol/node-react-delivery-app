@@ -4,13 +4,13 @@ import { productsGet } from '../../store/products';
 import ProductCard from './ProductCard';
 
 const ListProducts = () => {
-  const { token } = useSelector((state) => state.token);
+  const { info } = useSelector((state) => state.user);
   const { data, error, loading } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if (token && !data) dispatch(productsGet(token));
-  }, [token, dispatch, data]);
+    if (info && !data) dispatch(productsGet(info.token));
+  }, [info, dispatch, data]);
 
   return (
     <div className="product-card-container">

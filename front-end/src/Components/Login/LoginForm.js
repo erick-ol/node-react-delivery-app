@@ -5,7 +5,7 @@ import Input from '../Forms/Input';
 import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
 import { loginPost, resetLoginState } from '../../store/login';
-import { addToken } from '../../store/token';
+import { saveUser } from '../../store/user';
 
 const FormLogin = () => {
   const email = useForm('email');
@@ -27,7 +27,7 @@ const FormLogin = () => {
 
   React.useEffect(() => {
     if (data) {
-      dispatch(addToken(data.token));
+      dispatch(saveUser(data));
       dispatch(resetLoginState());
       navigate('/customer/products');
     }
