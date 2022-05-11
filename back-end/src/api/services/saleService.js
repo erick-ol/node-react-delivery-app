@@ -56,7 +56,6 @@ const updateTransit = async (id) => {
   const saleId = await sale.update({ status: 'Em Trânsito' }, {
     where: { id },
   });
-<<<<<<< HEAD
   return saleId;
 };
 
@@ -81,10 +80,6 @@ const update = async (id, status, role) => {
 
   return updateStatus;
 };
-=======
-  return saleId;
-};
->>>>>>> 16d3aad8d656d97d464c09c951faa5c5b1ab2b30
 
 module.exports = { 
   createSale,
@@ -92,10 +87,6 @@ module.exports = {
   getSaleBySellerId,
   updatePreparing,
   updateTransit,
-<<<<<<< HEAD
   updateDelivered,
   update,
 };
-=======
-};
->>>>>>> 16d3aad8d656d97d464c09c951faa5c5b1ab2b30

@@ -1,5 +1,4 @@
 const rescue = require('express-rescue');
-<<<<<<< HEAD
 const {
   createSale,
   getSaleById,
@@ -9,14 +8,6 @@ const {
   updateDelivered,
   update,
 } = require('../services/saleService');
-=======
-const { 
-  createSale, 
-  getSaleById, 
-  getSaleBySellerId, 
-  updatePreparing, 
-  updateTransit } = require('../services/saleService');
->>>>>>> 16d3aad8d656d97d464c09c951faa5c5b1ab2b30
 
 const createSaleController = ('/', rescue(async (req, res) => {
   try {
@@ -59,7 +50,6 @@ const updateSaleTransit = ('/', rescue(async (req, res) => {
   return res.status(201).json(saleTransiting);
 }));
 
-<<<<<<< HEAD
 const updateSaleDelivered = ('/', rescue(async (req, res) => {
   const { id } = req.params;
 
@@ -75,9 +65,6 @@ const updateSale = ('/', rescue(async (req, res) => {
   const sale = await update(id, status, role);
 
   return res.status(200).json(sale);
-=======
-  return res.status(201).json(saleDelivering);
->>>>>>> 16d3aad8d656d97d464c09c951faa5c5b1ab2b30
 }));
 
 module.exports = {
@@ -86,10 +73,6 @@ module.exports = {
   getSaleBySeller,
   updateSalePreparing,
   updateSaleTransit,
-<<<<<<< HEAD
   updateSaleDelivered,
   updateSale,
 };
-=======
-};
->>>>>>> 16d3aad8d656d97d464c09c951faa5c5b1ab2b30
