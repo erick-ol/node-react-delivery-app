@@ -6,4 +6,5 @@ module.exports = Joi.object({
   password: Joi.string().min(6).required().messages({
     'string.min': '"password" length must be 6 characters long',
   }),
+  role: Joi.string(),
 });
