@@ -5,14 +5,14 @@ function CheckoutTable() {
   /** usar redux */
   /** sujeito a mudanças */
   const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
-    /** funçao para o total(incluindo quantidade ja mutiplicada pelo preço) */
+  /** funçao para o total(incluindo quantidade ja mutiplicada pelo preço) */
   /** sujeito a mudanças */
 
   const totalPriceEachProduct = (quantity, price) => {
     const unitPrice = (quantity * price).toFixed(2).replace('.', ',');
     return unitPrice;
   };
-/** implementar usando o redux */
+  /** implementar usando o redux */
   const removeItem = () => {};
 
   return (

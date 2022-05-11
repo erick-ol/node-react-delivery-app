@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 function CheckoutAddress() {
-   /** pegar cartChosenProduct no store, criar/redux */
-  const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
-  const [filterSellers, _setFilterSellers] = useState([]);
-  const [seller, _setSeller] = useState(0);
+  /** pegar cartChosenProduct no store, criar/redux  para usar na soma */
+  // const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
+  // const [filterSellers, _setFilterSellers] = useState([]);
+  const [filterSellers] = useState([]);
+  // const [seller, _setSeller] = useState(0);
+  const [seller] = useState(0);
 
   /** implemetar removeItem */
-  const removeItem = () => {};
+  // const removeItem = () => {};
 
   return (
     <section className="checkout-address">
