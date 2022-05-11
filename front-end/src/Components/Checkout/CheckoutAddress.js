@@ -1,6 +1,15 @@
-import React from 'react';
-// tests
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+
 function CheckoutAddress() {
+   /** pegar cartChosenProduct no store, criar/redux */
+  const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
+  const [filterSellers, _setFilterSellers] = useState([]);
+  const [seller, _setSeller] = useState(0);
+
+  /** implemetar removeItem */
+  const removeItem = () => {};
+
   return (
     <section className="checkout-address">
       <div className="checkout-address-input-container">
@@ -8,15 +17,18 @@ function CheckoutAddress() {
           P. Vendedora Responsável
           <select
             required
+            value={ seller }
             name="sellers"
-            data-testid="customer_checkout__select-seller"
             // onChange={ () => () }
+            data-testid="customer_checkout__select-seller"
           >
-            <option key="value" value="id">
-              name
-            </option>
-            ))
-
+            {
+              filterSellers
+                .map((userSeller, index) => (
+                  <option key={ index } value={ userSeller.id }>
+                    { userSeller.name }
+                  </option>))
+            }
           </select>
         </label>
         <label className="checkout-address-input street-name" htmlFor="address">

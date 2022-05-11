@@ -3,13 +3,17 @@ import { useSelector } from 'react-redux';
 
 function CheckoutTable() {
   /** usar redux */
-  const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
-  /** funçao para o total(incluindo quantidade ja mutiplicada pelo preço) */
   /** sujeito a mudanças */
+  const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
+    /** funçao para o total(incluindo quantidade ja mutiplicada pelo preço) */
+  /** sujeito a mudanças */
+
   const totalPriceEachProduct = (quantity, price) => {
     const unitPrice = (quantity * price).toFixed(2).replace('.', ',');
     return unitPrice;
   };
+/** implementar usando o redux */
+  const removeItem = () => {};
 
   return (
     <div className="checkout-table">
@@ -25,8 +29,9 @@ function CheckoutTable() {
           </tr>
         </thead>
         <tbody>
-          { cartChosenProduct.map((prod, index) => (/** pegar cartChosenProduct no store, cria no store/redux */
-            <tr key="id" className="table-product-row">
+          { cartChosenProduct.map((prod, index) => (
+            /** pegar cartChosenProduct no store, cria no store/redux */
+            <tr key={ prod.id } className="table-product-row">
               <td
                 className="table-product-id"
                 data-testid={
@@ -37,14 +42,17 @@ function CheckoutTable() {
               </td>
               <td
                 className="table-product-name"
-                data-testid={ `customer_checkout__element-order-table-name-${index}` }
+                data-testid={
+                  `customer_checkout__element-order-table-name-${index}`
+                }
               >
-                name
+                { prod.name }
               </td>
               <td
                 className="table-product-quantity"
-                data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
-
+                data-testid={
+                  `customer_checkout__element-order-table-quantity-${index}`
+                }
               >
                 { prod.quantity }
               </td>
@@ -67,16 +75,17 @@ function CheckoutTable() {
               <td>
                 <button
                   className="table-product-remove"
-                  data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                  data-testid={
+                    `customer_checkout__element-order-table-remove-${index}`
+                  }
                   type="button"
-                // onClick={ () => () }
+                  onClick={ () => removeItem(prod.id) }
                 >
                   Remover
                 </button>
               </td>
             </tr>
           ))}
-          ;
         </tbody>
       </table>
       <div className="checkout-table-total-price">
