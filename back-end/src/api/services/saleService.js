@@ -5,6 +5,10 @@ const NOT_FOUND = new Error();
 NOT_FOUND.code = 'NotFound';
 NOT_FOUND.message = 'Seller not found';
 
+const UNAUTHORIZEDUSER_ERROR = new Error();
+UNAUTHORIZEDUSER_ERROR.code = 'UnauthorizedUser';
+UNAUTHORIZEDUSER_ERROR.message = 'Unauthorized user permissions';
+
 const createSale = async (
   { 
     userId, 
@@ -32,31 +36,50 @@ const getSaleById = async (id) => {
 };
 
 const getSaleBySellerId = async (id) => {
-  const saleBySellerId = await sale.findAll({ where: { seller_id: id } });
+  const saleBySellerId = await sale.findAll({ where: { sellerId: id } });
   
   if (saleBySellerId.length === 0) {
     throw NOT_FOUND;
   }
 
   return saleBySellerId;
-}
+};
 
 const updatePreparing = async (id) => {
-  const saleId = await sale.update({ status: "Preparando" }, {
-    where: { id }
-  }
-);
+  const saleId = await sale.update({ status: 'Preparando' }, {
+    where: { id },
+  });
   return saleId;
-}
-
+};
 
 const updateTransit = async (id) => {
-  const saleId = await sale.update({ status: "Em Trânsito" }, {
-    where: { id }
-  }
-);
+  const saleId = await sale.update({ status: 'Em Trânsito' }, {
+    where: { id },
+  });
   return saleId;
-}
+};
+
+const updateDelivered = async (id) => {
+  const saleId = await sale.update({ status: 'Entregue' }, {
+    where: { id },
+  });
+  return saleId;
+};
+
+const update = async (id, status, role) => {
+  if (status !== 'Entregue' && role === 'customer') {
+    throw UNAUTHORIZEDUSER_ERROR;
+  }
+  if (status === 'Entregue' && role !== 'customer') {
+    throw UNAUTHORIZEDUSER_ERROR;
+  }
+  const updateStatus = await sale.update(
+    { status },
+    { where: { id } },
+    );
+
+  return updateStatus;
+};
 
 module.exports = { 
   createSale,
@@ -64,4 +87,6 @@ module.exports = {
   getSaleBySellerId,
   updatePreparing,
   updateTransit,
+  updateDelivered,
+  update,
 };
