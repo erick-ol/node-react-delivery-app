@@ -116,3 +116,8 @@ Ex: **http://localhost:3001/customer/orders**
   }]
 }
 ```
+
+### Response sucesso
+1
+
+O número retornado é referente ao id da venda
