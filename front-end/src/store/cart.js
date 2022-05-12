@@ -1,36 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  cartChosenProduct: [],
+  cartProducts:
+    JSON.parse(window.localStorage.getItem('cart'))
+    || [],
 };
 
-export const cartChosenProductSlice = createSlice({
-  name: 'cartChosenProduct',
+export const slice = createSlice({
+  name: 'cart',
   initialState,
   reducers: {
-    buildCart: (state, action) => {
-      state.cartChosenProduct = action.payload;
-    },
-    addProduct: (state, action) => {
-      const otherProducts = state.cartChosenProduct
-        .filter((prod) => prod.id !== action.payload.id);
+    updateProduct: (state, { payload }) => {
+      if (state.cartProducts.length > 0) {
+        const otherProducts = state.cartProducts
+          .filter((prod) => prod.id !== payload.id);
 
-      state.cartChosenProduct = [
-        ...otherProducts,
-        action.payload,
-      ];
+        state.cartProducts = [
+          ...otherProducts,
+          payload,
+        ];
+      } else {
+        state.cartProducts = [payload];
+      }
 
-      const validProducts = state.cartChosenProduct.filter((prod) => prod.quantity > 0);
-      state.cartChosenProduct = [...validProducts];
+      window.localStorage.setItem('cart', JSON.stringify(state.cartProducts));
     },
-    removeProduct: (state, action) => {
-      const Products = state.cartChosenProduct
-        .filter((prod) => prod.id !== action.payload);
-      state.cartChosenProduct = [...Products];
+    removeProduct: (state, { payload }) => {
+      const products = state.cartProducts.filter((prod) => prod.id !== payload);
+      state.cartProducts = [...products];
+
+      window.localStorage.setItem('cart', JSON.stringify(state.cartProducts));
     },
   },
 });
 
-export const { buildCart, addProduct, removeProduct } = cartChosenProductSlice.actions;
+export const { updateProduct, removeProduct } = slice.actions;
 
-export default cartChosenProductSlice.reducer;
+export default slice.reducer;
