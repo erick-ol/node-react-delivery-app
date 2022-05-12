@@ -1,14 +1,16 @@
-const { SalesProduct } = require('../../database/models');
+// const { SalesProduct } = require('../../database/models');
 
-// eslint-disable-next-line no-unused-vars
-// const SALE_PRODUCT_ID = 'product_id';
+// const createSaleProduct = async (quantity, productId, saleId ) => {
+ 
+//   const product = await SalesProduct.bulkCreate([
+//     { quantity },
+//     { product_id: productId },
+//     { sale_id: saleId }
+//   ]);
 
-const createSaleProduct = async (_id, _quantity, _saleId) => {
-  const product = await SalesProduct.bulkInsert([{}]);
+//   return product;
+// };
 
-  return product.product_id;
-};
-
-module.exports = {
-  createSaleProduct,
-};
+// module.exports = {
+//   createSaleProduct,
+// };

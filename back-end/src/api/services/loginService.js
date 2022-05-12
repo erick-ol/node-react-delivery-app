@@ -40,6 +40,7 @@ const login = async (email, password) => {
   const token = sign({ email });
   
   return {
+    id: getEmail.dataValues.id,
     name: getEmail.dataValues.name,
     email: getEmail.dataValues.email,
     role: getEmail.dataValues.role,

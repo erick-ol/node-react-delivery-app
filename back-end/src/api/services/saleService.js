@@ -1,5 +1,6 @@
-const { sale } = require('../../database/models');
+const { sale, SalesProduct } = require('../../database/models');
 const { getSellerId } = require('./userService');
+const { getIdsByName } = require('./productService');
 
 const NOT_FOUND = new Error();
 NOT_FOUND.code = 'NotFound';
@@ -11,22 +12,27 @@ UNAUTHORIZEDUSER_ERROR.message = 'Unauthorized user permissions';
 
 const createSale = async (
   { 
-    userId, 
-    seller, 
-    total_price: totalPrice, 
-    delivery_address: deliveryAddress, 
+    userId, seller, total_price: totalPrice,
+    delivery_address: deliveryAddress,
     delivery_number: deliveryNumber,
+    products,
   },
   ) => {
   const saleId = await getSellerId(seller);
 
-  const product = await sale.create(
-      { 
-          userId, sellerId: saleId, totalPrice, deliveryAddress, deliveryNumber,
-      },
-    );
+  const newSale = await sale.create({ 
+          userId, sellerId: saleId, totalPrice, deliveryAddress, deliveryNumber });
+  
+  const saleById = newSale.dataValues.id;
 
-  return product.dataValues.id;
+  const productsId = await Promise.all(products.map(getIdsByName));
+  const newProducts = productsId.map((p) => ({ quantity: p.quantity,
+    saleId: saleById,
+productId: p.productId }));
+
+  await SalesProduct.bulkCreate(newProducts);
+ 
+  return saleById;
 };
 
 const getSaleById = async (id) => {

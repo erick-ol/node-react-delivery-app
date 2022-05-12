@@ -15,6 +15,7 @@ app.use('/customer/orders/', routes.saleProductRouter);
 app.use('/images', routes.imageRouter);
 app.use('/seller', routes.sellerRouter);
 app.use('/admin/manage', routes.adminRouter);
+app.use('/token', middlewares.verifyToken);
 
 app.use(middlewares.joiError);
 app.use(middlewares.domainError);
