@@ -8,6 +8,18 @@ const ProductCard = ({ product }) => {
   const [quantity, setQuantity] = React.useState(0);
   const dispatch = useDispatch();
 
+  const onChange = ({ target: { value } }) => {
+    setQuantity(+value);
+    if (+value === 0) dispatch(removeProduct(id));
+    else {
+      dispatch(updateProduct({
+        id,
+        price,
+        quant: +value,
+      }));
+    }
+  };
+
   const increment = () => {
     setQuantity(quantity + 1);
     dispatch(updateProduct({
@@ -66,7 +78,7 @@ const ProductCard = ({ product }) => {
               data-testid={ `customer_products__input-card-quantity-${id}` }
               type="number"
               value={ quantity }
-              onChange={ ({ target }) => setQuantity(target.quantity) }
+              onChange={ onChange }
             />
           </label>
           <button
