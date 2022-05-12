@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const ProductCard = ({ product }) => {
   const { id, name, price, urlImage } = product;
+  const [quantity, setQuantity] = React.useState(0);
 
   return (
     <section className="product-card-container">
@@ -38,6 +39,9 @@ const ProductCard = ({ product }) => {
             <input
               id="count-input"
               data-testid={ `customer_products__input-card-quantity-${id}` }
+              type="number"
+              value={ quantity }
+              onChange={ ({ target }) => setQuantity(target.quantity) }
             />
           </label>
           <button
