@@ -1,9 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { removeProduct, updateProduct } from '../../store/cart';
 
 const ProductCard = ({ product }) => {
   const { id, name, price, urlImage } = product;
   const [quantity, setQuantity] = React.useState(0);
+  const dispatch = useDispatch();
+
+  const increment = () => {
+    setQuantity(quantity + 1);
+    dispatch(updateProduct({
+      id,
+      price,
+      quant: quantity + 1,
+    }));
+  };
+
+  const decrement = () => {
+    setQuantity(quantity - 1);
+    if (quantity - 1 === 0) dispatch(removeProduct(id));
+    else {
+      dispatch(updateProduct({
+        id,
+        price,
+        quant: quantity - 1,
+      }));
+    }
+  };
 
   return (
     <section className="product-card-container">
@@ -31,7 +55,8 @@ const ProductCard = ({ product }) => {
           <button
             data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
-            // onClick={ () => { decrement(); } }
+            onClick={ decrement }
+            disabled={ quantity === 0 }
           >
             -
           </button>
@@ -47,7 +72,7 @@ const ProductCard = ({ product }) => {
           <button
             data-testid={ `customer_products__button-card-add-item-${id}` }
             type="button"
-            // onClick={ () => { increment(); } }
+            onClick={ increment }
           >
             +
           </button>
