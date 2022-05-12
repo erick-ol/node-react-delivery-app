@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { eraseCart } from '../../store/cart';
 import { userLogout } from '../../store/user';
 
 function CustomerNavbar() {
@@ -10,6 +11,7 @@ function CustomerNavbar() {
 
   const logout = () => {
     dispatch(userLogout());
+    dispatch(eraseCart());
     navigate('/login');
   };
 

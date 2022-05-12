@@ -40,9 +40,15 @@ export const slice = createSlice({
 
       window.localStorage.setItem('cart', JSON.stringify(state.cartProducts));
     },
+    eraseCart(state) {
+      state.cartProducts = [];
+      state.total = 0;
+
+      window.localStorage.removeItem('cart');
+    },
   },
 });
 
-export const { updateProduct, removeProduct } = slice.actions;
+export const { updateProduct, removeProduct, eraseCart } = slice.actions;
 
 export default slice.reducer;
