@@ -1,6 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { userLogout } from '../../store/user';
 
-export function CustomerNavbar() {
+function CustomerNavbar() {
+  const { info } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(userLogout());
+    navigate('/login');
+  };
+
   return (
     <div className="customer-navbar-container">
       <div className="requests-container">
@@ -13,13 +25,17 @@ export function CustomerNavbar() {
       </div>
       <div className="customer-name-container">
         <p data-testid="customer_products__element-navbar-user-full-name">
-          Nome do Usuário
+          {info.name}
         </p>
       </div>
       <div className="customer-exit-container">
-        <p data-testid="customer_products__element-navbar-link-logout">
+        <button
+          type="button"
+          onClick={ logout }
+          data-testid="customer_products__element-navbar-link-logout"
+        >
           Sair
-        </p>
+        </button>
       </div>
     </div>
   );

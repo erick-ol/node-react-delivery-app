@@ -6,7 +6,7 @@ const slice = createSlice({
     info: JSON.parse(window.localStorage.getItem('user')) || null,
   },
   reducers: {
-    logout(state) {
+    userLogout(state) {
       state.info = null;
       window.localStorage.removeItem('user');
     },
@@ -17,5 +17,5 @@ const slice = createSlice({
   },
 });
 
-export const { logout, saveUser } = slice.actions;
+export const { userLogout, saveUser } = slice.actions;
 export default slice.reducer;
