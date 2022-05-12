@@ -31,3 +31,11 @@ export const PRODUCTS_GET = (token) => ({
     },
   },
 });
+/** requisçoes do backend */
+export const USERS_GET = () => {
+
+};
+
+export const SALES_POST = () => {
+
+};

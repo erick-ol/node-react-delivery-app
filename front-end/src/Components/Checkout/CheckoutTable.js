@@ -1,10 +1,13 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { buildCart, removeProduct } from '../../store/checkout';
 
 function CheckoutTable() {
   /** usar redux */
   /** sujeito a mudanças */
   const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
+  const [total, setTotal] = useState(0);
+  const dispatch = useDispatch();
   /** funçao para o total(incluindo quantidade ja mutiplicada pelo preço) */
   /** sujeito a mudanças */
 
@@ -13,7 +16,26 @@ function CheckoutTable() {
     return unitPrice;
   };
   /** implementar usando o redux */
-  const removeItem = () => {};
+  const removeItem = (id) => {
+    dispatch(removeProduct(id));
+  };
+
+  useEffect(() => {
+    const localStorageCart = JSON.parse(localStorage.getItem('cart')) || [];
+    dispatch(buildCart(localStorageCart));
+  }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartChosenProduct));
+  }, [cartChosenProduct]);
+
+  useEffect(() => {
+    let sum = 0;
+    cartChosenProduct.forEach((prod) => {
+      sum += prod.price * prod.quantity;
+    });
+    return setTotal(sum);
+  }, [cartChosenProduct]);
 
   return (
     <div className="checkout-table">
