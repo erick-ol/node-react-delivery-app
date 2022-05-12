@@ -6,6 +6,12 @@ const getAll = async () => {
   return products;
 };
 
+const getIdsByName = async ({ quantity, name }) => {
+  const productIds = await product.findOne({ where: { name } });
+
+  return { quantity, productId: productIds.dataValues.id };
+};
 module.exports = {
   getAll,
+  getIdsByName,
 };

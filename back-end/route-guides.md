@@ -87,3 +87,37 @@ Authorization: (passar o token)
   ...
 ]
 ```
+
+# Endpoint /POST /customer/orders
+
+Irá criar a venda na tabela **sale** e na tabela **saleProducts**
+### Corpo da requisição
+
+Ex: **http://localhost:3001/customer/orders**
+
+```
+{
+  "userId": 3,
+  "seller": "Fulana Pereira",
+  "total_price": 800,
+  "delivery_address": "Rua dos Bobos",
+  "delivery_number": 0,
+  "products": [{
+      "quantity": 10,
+      "name": "Heineken 600ml"
+  },
+  {
+      "quantity": 10,
+      "name": "Brahma 600ml"
+  },
+  {
+      "quantity": 45,
+      "name": "Stella Artois 275ml"
+  }]
+}
+```
+
+### Response sucesso
+1
+
+O número retornado é referente ao id da venda
