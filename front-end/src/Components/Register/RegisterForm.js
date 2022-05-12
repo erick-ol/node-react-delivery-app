@@ -5,6 +5,7 @@ import Input from '../Forms/Input';
 import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
 import { registerPost, resetRegisterState } from '../../store/register';
+import { saveUser } from '../../store/user';
 
 const RegisterForm = () => {
   const email = useForm('email');
@@ -28,7 +29,7 @@ const RegisterForm = () => {
 
   React.useEffect(() => {
     if (data) {
-      window.localStorage.setItem('token', data.token);
+      dispatch(saveUser(data));
       dispatch(resetRegisterState());
       navigate('/customer/products');
     }
