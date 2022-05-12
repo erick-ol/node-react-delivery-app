@@ -6,6 +6,7 @@ import ProductCard from './ProductCard';
 const ListProducts = () => {
   const { info } = useSelector((state) => state.user);
   const { data, error, loading } = useSelector((state) => state.products);
+  const { total } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -21,7 +22,8 @@ const ListProducts = () => {
         type="button"
         data-testid="customer_products__button-cart"
       >
-        Total
+        Total:
+        { ` ${total.toFixed(2).toString().replace('.', ',')}` }
       </button>
       {error && <p>{error}</p>}
     </div>
