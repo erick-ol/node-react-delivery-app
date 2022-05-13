@@ -6,7 +6,7 @@ import { salesPost } from '../../store/sale';
 import Input from '../Forms/Input';
 
 const CheckoutAddress = () => {
-  const [seller, setSeller] = React.useState('Fulana Pereira');
+  const [seller, setSeller] = React.useState('2');
   const { info: { token, id } } = useSelector((state) => state.user);
   const { data } = useSelector((state) => state.sale);
   const { total, cartProducts } = useSelector((state) => state.cart);
@@ -24,7 +24,7 @@ const CheckoutAddress = () => {
   const handleClick = () => {
     const body = {
       userId: id,
-      seller,
+      seller: 'Fulana Pereira',
       total_price: total,
       delivery_address: address.value,
       delivery_number: +number.value,
@@ -43,7 +43,7 @@ const CheckoutAddress = () => {
           onChange={ (e) => setSeller(e.target.value) }
           data-testid="customer_checkout__select-seller"
         >
-          <option value="Fulana Pereira">
+          <option value="2">
             Fulana Pereira
           </option>
         </select>
