@@ -23,7 +23,11 @@ const RegisterForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(registerPost(
-      { name: name.value, email: email.value, password: password.value },
+      {
+        name: name.value,
+        email: email.value,
+        password: password.value,
+        role: 'customer' },
     ));
   };
 
