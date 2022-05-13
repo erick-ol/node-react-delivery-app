@@ -5,7 +5,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Products from './Pages/Products';
 import Checkout from './Pages/Checkout';
-// Subir novamente branch
+import CustomerOrders from './Pages/CustomerOrders';
 
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
           <Route path="/register" element={ <Register /> } />
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
+          <Route path="/customer/orders" element={ <CustomerOrders /> } />
         </Routes>
       </BrowserRouter>
     </div>
