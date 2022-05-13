@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SellerNavbar from '../Components/Seller/SellerNavbar';
+import SellerOrdersList from '../Components/Seller/SellerOrdersList';
 import { sellerOrdersGet } from '../store/sellerOrders';
 
 const SellerOrders = () => {
@@ -15,6 +16,7 @@ const SellerOrders = () => {
   return (
     <div>
       <SellerNavbar />
+      { data && <SellerOrdersList /> }
     </div>
   );
 };
