@@ -1,129 +1,57 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { USERS_GET, SALES_POST } from '../../api/index';
-import validateCheckout from '../../utils/validateCheckout';
+import React from 'react';
+import useForm from '../../Hooks/useForm';
+import Input from '../Forms/Input';
 
-function CheckoutAddress() {
-  /** pegar cartChosenProduct no store, criar/redux  para usar na soma */
-  const cartChosenProduct = useSelector((state) => state.cartChosenProduct);
-  const [filterSellers, setFilterSellers] = useState([]);
-  const [address, setAdress] = useState('');
-  const [number, setNumber] = useState('');
-  const [seller, setSeller] = useState(0);
-  /** usar disable */
-  const [checkoutButton, setCheckoutButton] = useState(true);
-  const navigate = useNavigate();
+const CheckoutAddress = () => {
+  const [seller, setSeller] = React.useState('Fulana Pereira');
+  const address = useForm();
+  const number = useForm();
+  const error = (typeof address.error === 'string')
+  || (typeof number.error === 'string');
 
-  const saleProducts = () => {
-    const products = [];
-    cartChosenProduct
-      .forEach((prod) => {
-        const { id, quantity } = prod;
-        const product = { productId: id, quantity };
-        products.push(product);
-      });
-    return products;
+  const handleClick = () => {
+    console.log(seller, address.value, number.value);
   };
-
-  const sumTotal = () => {
-    let totalPrice = 0;
-    cartChosenProduct
-      .forEach((prod) => {
-        totalPrice += prod.quantity * prod.price;
-      });
-    return totalPrice;
-  };
-
-  useEffect(() => {
-    /**  */
-    validateCheckout.isValid({ address, number })
-      .then((valid) => {
-        if (valid) setCheckoutButton(false);
-        else setCheckoutButton(true);
-      });
-  });
-
-  const endOrder = async (e) => {
-    e.preventDefault();
-    const totalPrice = sumTotal();
-    const products = saleProducts();
-
-    const salesData = {
-      sellerId: seller,
-      totalPrice,
-      deliveryAddress: address,
-      deliveryNumber: number,
-      products,
-    };
-    const { data } = SALES_POST(salesData);
-    localStorage.setItem('cart', JSON.stringify([]));
-    navigate.push(`./orders/${data.id}`);
-  };
-
-  useEffect(() => {
-    USERS_GET()
-      .then((response) => setFilterSellers(response.data
-        .filter((client) => client.role === 'seller')));
-  }, []);
-
-  useEffect(() => {
-    if (filterSellers.length > 0) setSeller(filterSellers[0].id);
-  }, [filterSellers]);
 
   return (
-    <section className="checkout-address">
-      <div className="checkout-address-input-container">
-        <label className="checkout-address-input" htmlFor="sellers">
-          P. Vendedora Responsável
-          <select
-            required
-            value={ seller }
-            name="sellers"
-            onChange={ (e) => setSeller(e.target.value) }
-            data-testid="customer_checkout__select-seller"
-          >
-            {
-              filterSellers
-                .map((userSeller, index) => (
-                  <option key={ index } value={ userSeller.id }>
-                    { userSeller.name }
-                  </option>))
-            }
-          </select>
-        </label>
-        <label className="checkout-address-input street-name" htmlFor="address">
-          Endereço
-          <input
-            required
-            type="text"
-            name="address"
-            data-testid="customer_checkout__input-address"
-            onChange={ (e) => setAdress(e.target.value) }
-          />
-        </label>
-        <label className="checkout-address-input house-number" htmlFor="number">
-          Número
-          <input
-            required
-            type="text"
-            name="number"
-            data-testid="customer_checkout__input-addressNumber"
-            onChange={ (e) => setNumber(e.target.value) }
-          />
-        </label>
-      </div>
+    <div>
+      <label className="checkout-address-input" htmlFor="sellers">
+        P. Vendedora Responsável
+        <select
+          value={ seller }
+          name="sellers"
+          onChange={ (e) => setSeller(e.target.value) }
+          data-testid="customer_checkout__select-seller"
+        >
+          <option value="Fulana Pereira">
+            Fulana Pereira
+          </option>
+        </select>
+      </label>
+      <Input
+        label="Endereço"
+        dataTestId="customer_checkout__input-address"
+        type="text"
+        name="address"
+        { ...address }
+      />
+      <Input
+        label="Número"
+        dataTestId="customer_checkout__input-addressNumber"
+        type="text"
+        name="number"
+        { ...number }
+      />
       <button
-        className="checkout-button"
-        type="submit"
+        disabled={ error }
+        type="button"
         data-testid="customer_checkout__button-submit-order"
-        disabled={ checkoutButton }
-        onClick={ endOrder }
+        onClick={ handleClick }
       >
         Finalizar Pedido
       </button>
-    </section>
+    </div>
   );
-}
+};
 
 export default CheckoutAddress;
