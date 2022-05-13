@@ -1,8 +1,14 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const SellerOrdersList = () => {
   const { data } = useSelector((state) => state.sellerOrders);
+  const navigate = useNavigate();
+
+  const handleClick = (id) => {
+    navigate(`/seller/orders/${id}`);
+  };
 
   return (
     <div>
@@ -10,7 +16,7 @@ const SellerOrdersList = () => {
         const date = new Date(order.saleDate).toLocaleDateString('pt-BR');
         console.log(date);
         return (
-          <div key={ order.id }>
+          <button type="button" key={ order.id } onClick={ () => handleClick(order.id) }>
             <p>
               Pedido
               <span data-testid={ `seller_orders__element-order-${order.id}` }>
@@ -32,7 +38,7 @@ const SellerOrdersList = () => {
             <p data-testid={ `seller_orders__element-card-address-${order.id}` }>
               { `${order.deliveryAddress}, ${order.deliveryNumber}` }
             </p>
-          </div>
+          </button>
         );
       })}
     </div>
