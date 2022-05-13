@@ -16,6 +16,7 @@ const ProductCard = ({ product }) => {
         id,
         price,
         quant: +value,
+        name,
       }));
     }
   };
@@ -26,6 +27,7 @@ const ProductCard = ({ product }) => {
       id,
       price,
       quant: quantity + 1,
+      name,
     }));
   };
 
@@ -37,6 +39,7 @@ const ProductCard = ({ product }) => {
         id,
         price,
         quant: quantity - 1,
+        name,
       }));
     }
   };
