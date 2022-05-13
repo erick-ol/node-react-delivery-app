@@ -45,3 +45,13 @@ export const SALES_POST = (token, body) => ({
     body: JSON.stringify(body),
   },
 });
+
+export const SELLER_ORDERS_GET = (token, id) => ({
+  url: `${API_URL}/seller/orders/${id}`,
+  options: {
+    method: 'GET',
+    headers: {
+      Authorization: token,
+    },
+  },
+});
