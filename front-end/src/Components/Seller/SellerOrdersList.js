@@ -16,7 +16,12 @@ const SellerOrdersList = () => {
         const date = new Date(order.saleDate).toLocaleDateString('pt-BR');
         console.log(date);
         return (
-          <button type="button" key={ order.id } onClick={ () => handleClick(order.id) }>
+          <button
+            type="button"
+            key={ order.id }
+            onClick={ () => handleClick(order.id) }
+            data-testid={ `seller_orders__element-order-id-${order.id}` }
+          >
             <p>
               Pedido
               <span data-testid={ `seller_orders__element-order-${order.id}` }>
