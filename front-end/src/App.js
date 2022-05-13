@@ -6,6 +6,7 @@ import Register from './Pages/Register';
 import Products from './Pages/Products';
 import Checkout from './Pages/Checkout';
 import CustomerOrders from './Pages/CustomerOrders';
+import SellerOrders from './Pages/SellerOrders';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/customer/products" element={ <Products /> } />
           <Route path="/customer/checkout" element={ <Checkout /> } />
           <Route path="/customer/orders" element={ <CustomerOrders /> } />
+          <Route path="/seller/orders" element={ <SellerOrders /> } />
         </Routes>
       </BrowserRouter>
     </div>
