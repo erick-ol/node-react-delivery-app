@@ -8,25 +8,25 @@ USER_ALREADY_EXISTS_ERROR.code = 'AlreadyExists';
 USER_ALREADY_EXISTS_ERROR.message = 'User already registered';
 
 const newCostumer = async (bodyRequest) => {
-  const { name, email, password, role } = bodyRequest;
+  const { name, email, password } = bodyRequest;
 
   const encryptedPassword = md5(password);
 
   const [userRegistered, created] = await user.findOrCreate({
     where: { [Op.or]: [{ name }, { email }] },
-    defaults: { name, email, password: encryptedPassword, role },
+    defaults: { name, email, password: encryptedPassword, role: 'customer' },
   });
 
   if (!created) {
     throw USER_ALREADY_EXISTS_ERROR;
   }
 
-  const token = sign({ name, email, password, role });
+  const token = sign({ name, email, password });
 
   return {
     name: userRegistered.name,
     email: userRegistered.email,
-    role,
+    role: userRegistered.role,
     token,
   };
 };
