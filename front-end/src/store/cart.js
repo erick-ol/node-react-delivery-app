@@ -29,6 +29,7 @@ export const slice = createSlice({
         state.total = calculateTotal(state.cartProducts);
       } else {
         state.cartProducts = [payload];
+        state.total = calculateTotal(state.cartProducts);
       }
 
       window.localStorage.setItem('cart', JSON.stringify(state.cartProducts));
