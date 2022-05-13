@@ -29,7 +29,9 @@ const FormLogin = () => {
     if (data) {
       dispatch(saveUser(data));
       dispatch(resetLoginState());
-      navigate('/customer/products');
+      if (data.role === 'customer') navigate('/customer/products');
+      if (data.role === 'seller') navigate('/seller/orders');
+      if (data.role === 'admin') navigate('/admin/manage');
     }
   }, [data, navigate, dispatch]);
 
