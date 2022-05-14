@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const calculateTotal = (cartProducts) => {
-  console.log(cartProducts);
   if (!cartProducts || cartProducts.length === 0) return 0;
   return cartProducts.reduce((prev, curr) => ((+curr.price * curr.quant) + prev), 0);
 };
