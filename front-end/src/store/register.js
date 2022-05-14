@@ -3,7 +3,9 @@ import createAsyncSlice from './helper/createAsyncSlice';
 
 const slice = createAsyncSlice({
   name: 'registerPost',
-  fetchConfig: ({ name, email, password }) => REGISTER_POST({ name, email, password }),
+  fetchConfig: ({ name, email, password, role }) => REGISTER_POST(
+    { name, email, password, role },
+  ),
 });
 
 export const registerPost = slice.asyncAction;

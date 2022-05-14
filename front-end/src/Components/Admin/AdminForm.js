@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useForm from '../../Hooks/useForm';
+import { registerPost, resetRegisterState } from '../../store/register';
 import Button from '../Forms/Button';
 import Input from '../Forms/Input';
 
 const AdminForm = () => {
   const [role, setRole] = React.useState('');
+  const [message, setMessage] = React.useState(null);
   const email = useForm('email');
   const password = useForm('password');
   const name = useForm('name');
@@ -13,10 +16,35 @@ const AdminForm = () => {
   || (typeof name.error === 'string')
   || (role === '');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Cadastrou');
+  // redux
+  const dispatch = useDispatch();
+  const { data, error } = useSelector((state) => state.register);
+
+  const handleSubmit = (event) => {
+    const newUser = {
+      name: name.value,
+      email: email.value,
+      password: password.value,
+      role };
+    event.preventDefault();
+    setMessage(null);
+    dispatch(registerPost(newUser));
   };
+
+  React.useEffect(() => {
+    if (data) {
+      dispatch(resetRegisterState());
+      setRole('');
+      email.setValue('');
+      password.setValue('');
+      name.setValue('');
+      setMessage('User criado');
+    }
+    if (error) {
+      dispatch(resetRegisterState());
+      setMessage(error);
+    }
+  }, [data, dispatch, email, password, name, error]);
 
   return (
     <form onSubmit={ handleSubmit }>
@@ -66,6 +94,8 @@ const AdminForm = () => {
       >
         Cadastrar
       </Button>
+
+      { message && <p>{message}</p> }
     </form>
   );
 };
