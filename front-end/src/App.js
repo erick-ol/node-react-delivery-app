@@ -8,6 +8,7 @@ import Checkout from './Pages/Checkout';
 import CustomerOrders from './Pages/CustomerOrders';
 import SellerOrders from './Pages/SellerOrders';
 import CustomerOrderId from './Pages/CustomerOrderId';
+import Admin from './Pages/Admin';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/customer/orders" element={ <CustomerOrders /> } />
           <Route path="/customer/orders/:id" element={ <CustomerOrderId /> } />
           <Route path="/seller/orders" element={ <SellerOrders /> } />
+          <Route path="/admin/manage" element={ <Admin /> } />
         </Routes>
       </BrowserRouter>
     </div>

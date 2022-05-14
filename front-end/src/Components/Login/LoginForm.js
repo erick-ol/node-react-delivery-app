@@ -31,7 +31,7 @@ const FormLogin = () => {
       dispatch(resetLoginState());
       if (data.role === 'customer') navigate('/customer/products');
       if (data.role === 'seller') navigate('/seller/orders');
-      if (data.role === 'admin') navigate('/admin/manage');
+      if (data.role === 'administrator') navigate('/admin/manage');
     }
   }, [data, navigate, dispatch]);
 
