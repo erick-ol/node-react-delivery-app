@@ -13,12 +13,13 @@ export const LOGIN_POST = (body) => ({
   },
 });
 
-export const REGISTER_POST = (body) => ({
+export const REGISTER_POST = (body, token) => ({
   url: `${API_URL}/register`,
   options: {
     method: 'POST',
     headers: {
       'Content-Type': applicationJson,
+      Authorization: token,
     },
     body: JSON.stringify(body),
   },

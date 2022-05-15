@@ -7,6 +7,7 @@ import Input from '../Forms/Input';
 
 const AdminForm = () => {
   const [role, setRole] = React.useState('');
+  const [errorMessage, setErrorMessage] = React.useState(null);
   const [message, setMessage] = React.useState(null);
   const email = useForm('email');
   const password = useForm('password');
@@ -19,6 +20,7 @@ const AdminForm = () => {
   // redux
   const dispatch = useDispatch();
   const { data, error } = useSelector((state) => state.register);
+  const { info: { token } } = useSelector((state) => state.user);
 
   const handleSubmit = (event) => {
     const newUser = {
@@ -28,7 +30,8 @@ const AdminForm = () => {
       role };
     event.preventDefault();
     setMessage(null);
-    dispatch(registerPost(newUser));
+    setErrorMessage(null);
+    dispatch(registerPost(newUser, token));
   };
 
   React.useEffect(() => {
@@ -42,7 +45,7 @@ const AdminForm = () => {
     }
     if (error) {
       dispatch(resetRegisterState());
-      setMessage(error);
+      setErrorMessage(error);
     }
   }, [data, dispatch, email, password, name, error]);
 
@@ -96,6 +99,8 @@ const AdminForm = () => {
       </Button>
 
       { message && <p>{message}</p> }
+      { errorMessage
+      && <p data-testid="admin_manage__element-invalid-register">{errorMessage}</p> }
     </form>
   );
 };
