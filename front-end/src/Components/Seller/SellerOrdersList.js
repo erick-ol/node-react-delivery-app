@@ -14,7 +14,6 @@ const SellerOrdersList = () => {
     <div>
       {data.map((order) => {
         const date = new Date(order.saleDate).toLocaleDateString('pt-BR');
-        console.log(date);
         return (
           <button
             type="button"

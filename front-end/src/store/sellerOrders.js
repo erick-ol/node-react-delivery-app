@@ -41,7 +41,6 @@ export const sellerOrdersGet = (token, id) => async (dispatch) => {
     const { url, options } = SELLER_ORDERS_GET(token, id);
     const response = await fetch(url, options);
     const json = await response.json();
-    console.log(json);
 
     dispatch(fetchSuccess(json));
   } catch (error) {

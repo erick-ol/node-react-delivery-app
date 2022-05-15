@@ -41,7 +41,6 @@ export const salesPost = (token, body) => async (dispatch) => {
     const { url, options } = SALES_POST(token, body);
     const response = await fetch(url, options);
     const json = await response.json();
-    console.log(json);
 
     dispatch(fetchSuccess(json));
   } catch (error) {
