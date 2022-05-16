@@ -12,7 +12,7 @@ const SellerOrdersList = () => {
 
   return (
     <div>
-      {data.map((order) => {
+      {data ? data.map((order) => {
         const date = new Date(order.saleDate).toLocaleDateString('pt-BR');
         return (
           <button
@@ -44,7 +44,7 @@ const SellerOrdersList = () => {
             </p>
           </button>
         );
-      })}
+      }) : <p>Sem pedidos.</p>}
     </div>
   );
 };
