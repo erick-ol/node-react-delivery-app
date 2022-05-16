@@ -41,6 +41,12 @@ const getSaleById = async (id) => {
   return saleData;
 };
 
+const getSalesById = async (id) => {
+  const saleData = sale.findAll({ where: { userId: id } });
+
+  return saleData;
+};
+
 const getSaleBySellerId = async (id) => {
   const saleBySellerId = await sale.findAll({ where: { sellerId: id } });
   
@@ -95,4 +101,5 @@ module.exports = {
   updateTransit,
   updateDelivered,
   update,
+  getSalesById,
 };
