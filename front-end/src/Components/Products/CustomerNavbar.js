@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { eraseCart } from '../../store/cart';
 import { userLogout } from '../../store/user';
 
@@ -19,10 +19,10 @@ function CustomerNavbar() {
     <div className="customer-navbar-container">
       <div className="requests-container">
         <p data-testid="customer_products__element-navbar-link-products">
-          Produtos
+          <Link to="/customer/products">Produtos</Link>
         </p>
         <p data-testid="customer_products__element-navbar-link-orders">
-          Meus Pedidos
+          <Link to="/customer/orders">Pedidos</Link>
         </p>
       </div>
       <div className="customer-name-container">
