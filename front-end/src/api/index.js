@@ -86,3 +86,13 @@ export const CUSTOMER_DELIVERED_PUT = (token, id) => ({
     },
   },
 });
+
+export const CUSTOMER_ORDERS = (token, id) => ({
+  url: `${API_URL}/customer/orders/all/${id}`,
+  options: {
+    method: 'GET',
+    headers: {
+      Authorization: token,
+    },
+  },
+});
