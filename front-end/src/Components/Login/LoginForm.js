@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Input from '../Forms/Input';
@@ -17,6 +17,7 @@ const FormLogin = () => {
   // redux
   const dispatch = useDispatch();
   const { loading, data, error } = useSelector((state) => state.login);
+  const { info } = useSelector((state) => state.user);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,15 +26,25 @@ const FormLogin = () => {
     ));
   };
 
+  const handleNavigation = useCallback((role) => {
+    if (role === 'customer') navigate('/customer/products');
+    if (role === 'seller') navigate('/seller/orders');
+    if (role === 'administrator') navigate('/admin/manage');
+  }, [navigate]);
+
   React.useEffect(() => {
     if (data) {
       dispatch(saveUser(data));
       dispatch(resetLoginState());
-      if (data.role === 'customer') navigate('/customer/products');
-      if (data.role === 'seller') navigate('/seller/orders');
-      if (data.role === 'administrator') navigate('/admin/manage');
+      handleNavigation(data.role);
     }
-  }, [data, navigate, dispatch]);
+  }, [data, dispatch, handleNavigation]);
+
+  React.useEffect(() => {
+    if (info) {
+      handleNavigation(info.role);
+    }
+  }, [info, handleNavigation]);
 
   return (
     <form onSubmit={ handleSubmit }>

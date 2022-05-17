@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import useForm from '../../Hooks/useForm';
+import { eraseCart } from '../../store/cart';
 import { salesPost } from '../../store/sale';
 import Input from '../Forms/Input';
 
@@ -18,8 +19,11 @@ const CheckoutAddress = () => {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (data) navigate(`/customer/orders/${data}`);
-  }, [data, navigate]);
+    if (data) {
+      dispatch(eraseCart());
+      navigate(`/customer/orders/${data}`);
+    }
+  }, [data, navigate, dispatch]);
 
   const handleClick = () => {
     const body = {
