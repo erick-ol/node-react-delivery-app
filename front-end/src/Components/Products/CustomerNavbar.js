@@ -18,12 +18,20 @@ function CustomerNavbar() {
   return (
     <div className="customer-navbar-container">
       <div className="requests-container">
-        <p data-testid="customer_products__element-navbar-link-products">
-          <Link to="/customer/products">Produtos</Link>
-        </p>
-        <p data-testid="customer_products__element-navbar-link-orders">
-          <Link to="/customer/orders">Pedidos</Link>
-        </p>
+        <Link
+          data-testid="customer_products__element-navbar-link-products"
+          to="/customer/products"
+        >
+          Produtos
+        </Link>
+
+        <Link
+          data-testid="customer_products__element-navbar-link-orders"
+          to="/customer/orders"
+        >
+          Pedidos
+        </Link>
+
       </div>
       <div className="customer-name-container">
         <p data-testid="customer_products__element-navbar-user-full-name">
