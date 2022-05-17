@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import CustomerOrdersList from '../Components/Customer/CustomerOrdersList';
 import CustomerNavbar from '../Components/Products/CustomerNavbar';
 import { customerOrdersGet } from '../store/customerOrders';
 
@@ -15,7 +16,7 @@ function CustomerOrders() {
   return (
     <>
       <CustomerNavbar />
-      <div>oi</div>
+      <CustomerOrdersList />
     </>
   );
 }
