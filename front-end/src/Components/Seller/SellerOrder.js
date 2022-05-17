@@ -42,6 +42,7 @@ const SellerOrder = () => {
             <p data-testid={ dataTestId.orderDate }>{date}</p>
             <p data-testid={ dataTestId.orderStatus }>{order.status}</p>
             <button
+              disabled={ order.status === 'Entregue' || order.status === 'Em trânsito' }
               type="button"
               onClick={ handlePrepare }
               data-testid={ dataTestId.orderPrepare }
@@ -49,6 +50,7 @@ const SellerOrder = () => {
               Preparar pedido
             </button>
             <button
+              disabled={ order.status === 'Entregue' || order.status === 'Pendente' }
               type="button"
               onClick={ handleDeliver }
               data-testid={ dataTestId.orderDispatch }
