@@ -1,13 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { sellerOrdersGet } from '../../store/sellerOrders';
+import { resetState, statusPut } from '../../store/status';
 import dataTestId from './data-testids';
 import SellerNavbar from './SellerNavbar';
 
 const SellerOrder = () => {
   const { data } = useSelector((state) => state.sellerOrders);
+  const { info } = useSelector((state) => state.user);
+  const { data: statusData } = useSelector((state) => state.status);
   const [order, setOrder] = React.useState(null);
   const [date, setDate] = React.useState(null);
+  const dispatch = useDispatch();
   const { id } = useParams();
 
   React.useEffect(() => {
@@ -18,14 +23,21 @@ const SellerOrder = () => {
     if (order) setDate(new Date(order.saleDate).toLocaleDateString('pt-BR'));
   }, [order]);
 
+  React.useEffect(() => {
+    if (statusData) {
+      dispatch(resetState());
+      dispatch(sellerOrdersGet(info.token, info.id));
+    }
+  }, [statusData, dispatch, info]);
+
   const handlePrepare = (e) => {
     e.preventDefault();
-    console.log('Preparando');
+    dispatch(statusPut(info.token, id, 'preparing'));
   };
 
   const handleDeliver = (e) => {
     e.preventDefault();
-    console.log('Enviando');
+    dispatch(statusPut(info.token, id, 'transit'));
   };
 
   return (
@@ -43,7 +55,7 @@ const SellerOrder = () => {
             <p data-testid={ dataTestId.orderStatus }>{order.status}</p>
             <button
               disabled={ order.status === 'Entregue'
-              || order.status === 'Em trânsito' || order.status === 'Preparando' }
+              || order.status === 'Em Trânsito' || order.status === 'Preparando' }
               type="button"
               onClick={ handlePrepare }
               data-testid={ dataTestId.orderPrepare }
@@ -52,7 +64,7 @@ const SellerOrder = () => {
             </button>
             <button
               disabled={ order.status === 'Entregue'
-              || order.status === 'Pendente' || order.status === 'Em trânsito' }
+              || order.status === 'Pendente' || order.status === 'Em Trânsito' }
               type="button"
               onClick={ handleDeliver }
               data-testid={ dataTestId.orderDispatch }

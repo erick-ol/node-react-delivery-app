@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { SELLER_PREPARE_PUT } from '../api';
+import { CUSTOMER_DELIVERED_PUT, SELLER_PREPARE_PUT, SELLER_TRANSIT_PUT } from '../api';
 
 const slice = createSlice({
   name: 'status',
@@ -47,13 +47,13 @@ export const statusPut = (token, id, route) => async (dispatch) => {
       dispatch(fetchSuccess(json));
     }
     if (route === 'transit') {
-      const { url, options } = SELLER_PREPARE_PUT(token, id);
+      const { url, options } = SELLER_TRANSIT_PUT(token, id);
       const response = await fetch(url, options);
       const json = await response.json();
       dispatch(fetchSuccess(json));
     }
     if (route === 'delivered') {
-      const { url, options } = SELLER_PREPARE_PUT(token, id);
+      const { url, options } = CUSTOMER_DELIVERED_PUT(token, id);
       const response = await fetch(url, options);
       const json = await response.json();
       dispatch(fetchSuccess(json));
