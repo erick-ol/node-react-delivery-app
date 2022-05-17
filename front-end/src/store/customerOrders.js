@@ -1,0 +1,49 @@
+import { createSlice } from '@reduxjs/toolkit';
+import { CUSTOMER_ORDERS } from '../api';
+
+const slice = createSlice({
+  name: 'customerOrders',
+  initialState: {
+    loading: false,
+    data: null,
+    error: null,
+  },
+  reducers: {
+    fetchStarted(state) {
+      state.loading = true;
+    },
+    fetchSuccess(state, action) {
+      state.loading = false;
+      state.data = action.payload;
+      state.error = null;
+    },
+    fetchError(state, action) {
+      state.loading = false;
+      state.data = null;
+      state.error = action.payload;
+    },
+    resetState(state) {
+      state.loading = false;
+      state.data = null;
+      state.error = null;
+    },
+  },
+});
+
+export default slice.reducer;
+
+const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
+
+export const customerOrdersGet = (token, id) => async (dispatch) => {
+  try {
+    dispatch(fetchStarted());
+
+    const { url, options } = CUSTOMER_ORDERS(token, id);
+    const response = await fetch(url, options);
+    const json = await response.json();
+
+    dispatch(fetchSuccess(json));
+  } catch (error) {
+    dispatch(fetchError(error.message));
+  }
+};
