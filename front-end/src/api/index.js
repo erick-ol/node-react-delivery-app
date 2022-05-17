@@ -56,3 +56,33 @@ export const SELLER_ORDERS_GET = (token, id) => ({
     },
   },
 });
+
+export const SELLER_PREPARE_PUT = (token, id) => ({
+  url: `${API_URL}/seller/orders/${id}/preparing`,
+  options: {
+    method: 'PUT',
+    headers: {
+      Authorization: token,
+    },
+  },
+});
+
+export const SELLER_TRANSIT_PUT = (token, id) => ({
+  url: `${API_URL}/seller/orders/${id}/transit`,
+  options: {
+    method: 'PUT',
+    headers: {
+      Authorization: token,
+    },
+  },
+});
+
+export const CUSTOMER_DELIVERED_PUT = (token, id) => ({
+  url: `${API_URL}/seller/orders/${id}/delivered`,
+  options: {
+    method: 'PUT',
+    headers: {
+      Authorization: token,
+    },
+  },
+});
