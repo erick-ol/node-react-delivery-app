@@ -32,6 +32,7 @@ const slice = createSlice({
 
 export default slice.reducer;
 
+export const { resetState } = slice.actions;
 const { fetchStarted, fetchSuccess, fetchError } = slice.actions;
 
 export const sellerOrdersGet = (token, id) => async (dispatch) => {
