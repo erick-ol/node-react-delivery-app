@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import Customer from './Pages/Customer';
-import Seller from './Pages/Seller';
-import Admin from './Pages/Admin';
+import {
+  Admin,
+  Customer,
+  Login,
+  Register,
+  Seller,
+} from './Pages';
 
 function App() {
   return (
