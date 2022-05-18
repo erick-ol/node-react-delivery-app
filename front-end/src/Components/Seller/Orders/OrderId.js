@@ -1,12 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { sellerOrdersGet } from '../../store/sellerOrders';
-import { resetState, statusPut } from '../../store/status';
-import dataTestId from './data-testids';
-import SellerNavbar from './SellerNavbar';
+import { sellerOrdersGet } from '../../../store/sellerOrders';
+import { resetState, statusPut } from '../../../store/status';
+import dataTestId from '../data-testids';
 
-const SellerOrder = () => {
+const OrderId = () => {
   const { data } = useSelector((state) => state.sellerOrders);
   const { info } = useSelector((state) => state.user);
   const { data: statusData } = useSelector((state) => state.status);
@@ -42,7 +41,7 @@ const SellerOrder = () => {
 
   return (
     <>
-      <SellerNavbar />
+      <br />
       {order && (
         <>
           <header>
@@ -79,4 +78,4 @@ const SellerOrder = () => {
   );
 };
 
-export default SellerOrder;
+export default OrderId;

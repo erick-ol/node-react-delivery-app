@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { eraseCart } from '../../store/cart';
 import { userLogout } from '../../store/user';
 
-function SellerNavbar() {
+function Navbar() {
   const { info } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,8 +18,13 @@ function SellerNavbar() {
   return (
     <div className="customer-navbar-container">
       <div className="requests-container">
-        <p data-testid="customer_products__element-navbar-link-orders">
-          Pedidos
+        <p>
+          <Link
+            to="/seller/orders"
+            data-testid="customer_products__element-navbar-link-orders"
+          >
+            Pedidos
+          </Link>
         </p>
       </div>
       <div className="customer-name-container">
@@ -40,4 +45,4 @@ function SellerNavbar() {
   );
 }
 
-export default SellerNavbar;
+export default Navbar;

@@ -1,13 +1,20 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { sellerOrdersGet } from '../../../store/sellerOrders';
 
-const SellerOrdersList = () => {
+const OrdersList = () => {
   const { data } = useSelector((state) => state.sellerOrders);
+  const { info: { id, token } } = useSelector((state) => state.user);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleClick = (id) => {
-    navigate(`/seller/orders/${id}`);
+  React.useEffect(() => {
+    if (!data) dispatch(sellerOrdersGet(token, id));
+  }, [data, dispatch, id, token]);
+
+  const handleClick = (orderId) => {
+    navigate(`/seller/orders/${orderId}`);
   };
 
   return (
@@ -49,4 +56,4 @@ const SellerOrdersList = () => {
   );
 };
 
-export default SellerOrdersList;
+export default OrdersList;
