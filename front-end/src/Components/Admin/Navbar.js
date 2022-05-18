@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { eraseCart } from '../../store/cart';
 import { userLogout } from '../../store/user';
 
-function AdminNavbar() {
+function Navbar() {
   const { info } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -40,4 +40,4 @@ function AdminNavbar() {
   );
 }
 
-export default AdminNavbar;
+export default Navbar;

@@ -5,7 +5,7 @@ import { registerPost, resetRegisterState } from '../../store/register';
 import Button from '../Forms/Button';
 import Input from '../Forms/Input';
 
-const AdminForm = () => {
+const Form = () => {
   const [role, setRole] = React.useState('');
   const [errorMessage, setErrorMessage] = React.useState(null);
   const [message, setMessage] = React.useState(null);
@@ -105,4 +105,4 @@ const AdminForm = () => {
   );
 };
 
-export default AdminForm;
+export default Form;

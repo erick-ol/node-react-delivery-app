@@ -1,11 +1,17 @@
 import React from 'react';
-import AdminForm from '../Components/Admin/AdminForm';
-import AdminNavbar from '../Components/Admin/AdminNavbar';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import {
+  Navbar,
+  Form,
+} from '../Components/Admin';
 
 const Admin = () => (
   <>
-    <AdminNavbar />
-    <AdminForm />
+    <Navbar />
+    <Routes>
+      <Route path="/" element={ <Navigate replace to="/admin/manage" /> } />
+      <Route path="manage" element={ <Form /> } />
+    </Routes>
   </>
 );
 
