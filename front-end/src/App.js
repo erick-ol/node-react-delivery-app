@@ -4,10 +4,7 @@ import './App.css';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Customer from './Pages/Customer';
-import Checkout from './Pages/Checkout';
-import CustomerOrders from './Pages/CustomerOrders';
 import SellerOrders from './Pages/SellerOrders';
-import CustomerOrderId from './Pages/CustomerOrderId';
 import Admin from './Pages/Admin';
 import SellerOrder from './Components/Seller/SellerOrder';
 
@@ -19,10 +16,7 @@ function App() {
           <Route path="/" element={ <Navigate replace to="/login" /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
-          <Route path="/customer/products" element={ <Customer /> } />
-          <Route path="/customer/checkout" element={ <Checkout /> } />
-          <Route path="/customer/orders" element={ <CustomerOrders /> } />
-          <Route path="/customer/orders/:id" element={ <CustomerOrderId /> } />
+          <Route path="/customer/*" element={ <Customer /> } />
           <Route path="/seller/orders" element={ <SellerOrders /> } />
           <Route path="/seller/orders/:id" element={ <SellerOrder /> } />
           <Route path="/admin/manage" element={ <Admin /> } />

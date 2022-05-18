@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import useForm from '../../Hooks/useForm';
-import { eraseCart } from '../../store/cart';
-import { salesPost } from '../../store/sale';
-import Input from '../Forms/Input';
+import useForm from '../../../Hooks/useForm';
+import { eraseCart } from '../../../store/cart';
+import { salesPost } from '../../../store/sale';
+import Input from '../../Forms/Input';
 
 const CheckoutAddress = () => {
   const [seller, setSeller] = React.useState('2');

@@ -1,8 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CustomerOrdersList from '../Components/Customer/CustomerOrdersList';
-import CustomerNavbar from '../Components/Products/CustomerNavbar';
-import { customerOrdersGet } from '../store/customerOrders';
+import CustomerOrdersList from './OrdersList';
+import { customerOrdersGet } from '../../../store/customerOrders';
 
 function CustomerOrders() {
   const { data } = useSelector((state) => state.customerOrders);
@@ -13,12 +12,7 @@ function CustomerOrders() {
     if (!data) dispatch(customerOrdersGet(token, id));
   }, [data, dispatch, id, token]);
 
-  return (
-    <>
-      <CustomerNavbar />
-      <CustomerOrdersList />
-    </>
-  );
+  return <CustomerOrdersList />;
 }
 
 export default CustomerOrders;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { removeProduct, updateProduct } from '../../store/cart';
+import { removeProduct, updateProduct } from '../../../store/cart';
 
 const ProductCard = ({ product }) => {
   const { id, name, price, urlImage } = product;

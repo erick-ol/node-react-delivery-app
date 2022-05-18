@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { productsGet } from '../../store/products';
+import { productsGet } from '../../../store/products';
 import ProductCard from './ProductCard';
 
-const ListProducts = () => {
+const ProductsList = () => {
   const { info } = useSelector((state) => state.user);
   const { data, error, loading } = useSelector((state) => state.products);
   const { total } = useSelector((state) => state.cart);
@@ -40,4 +40,4 @@ const ListProducts = () => {
   );
 };
 
-export default ListProducts;
+export default ProductsList;
