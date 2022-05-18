@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { eraseCart } from '../../store/cart';
+import { resetState } from '../../store/customerOrders';
 import { userLogout } from '../../store/user';
 
 function CustomerNavbar() {
@@ -12,6 +13,7 @@ function CustomerNavbar() {
   const logout = () => {
     dispatch(userLogout());
     dispatch(eraseCart());
+    dispatch(resetState());
     navigate('/login');
   };
 
