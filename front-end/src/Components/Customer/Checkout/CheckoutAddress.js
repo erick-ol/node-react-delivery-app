@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import useForm from '../../../Hooks/useForm';
 import { eraseCart } from '../../../store/cart';
-import { salesPost } from '../../../store/sale';
+import { resetState, salesPost } from '../../../store/sale';
 import Input from '../../Forms/Input';
 
 const CheckoutAddress = () => {
@@ -21,6 +21,7 @@ const CheckoutAddress = () => {
   React.useEffect(() => {
     if (data) {
       dispatch(eraseCart());
+      dispatch(resetState());
       navigate(`/customer/orders/${data}`);
     }
   }, [data, navigate, dispatch]);
