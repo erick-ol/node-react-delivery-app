@@ -1,0 +1,46 @@
+/* Color variables */
+
+* {
+  --type-first: 'Nunito', Arial, sans-serif;
+  --type-second: 'Lato', georgia;
+  --background: #f9f9f9;
+  --light-grey: #959188;
+  --medium-grey: #6D695F;
+  --dark-grey: #44443D;
+  --light-orange: #FFCB64;
+  --medium-orange: #FB3;
+  --dark-orange: #F3AD1F;
+  --red: #F22;
+  --green: #1D2;
+}
+
+/* CSS Reset */
+
+* {
+  box-sizing: border-box;
+}
+
+body, h1, h2, p, ul, li, a {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--dark-grey);
+  background: var(--background);
+  font-family: var(--type-first);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
