@@ -8,6 +8,7 @@ import { registerPost, resetRegisterState } from '../../store/register';
 import { saveUser } from '../../store/user';
 import style from './css/RegisterForm.module.css';
 import Error from '../helper/Error';
+import Loading from '../helper/Loading';
 
 const RegisterForm = () => {
   const email = useForm('email');
@@ -84,7 +85,7 @@ const RegisterForm = () => {
         </p>
       ) }
 
-      { loading && <p>Loading...</p> }
+      { loading && <Loading /> }
     </form>
   );
 };

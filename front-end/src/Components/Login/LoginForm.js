@@ -8,6 +8,7 @@ import { loginPost, resetLoginState } from '../../store/login';
 import { saveUser } from '../../store/user';
 import style from './css/LoginForm.module.css';
 import Error from '../helper/Error';
+import Loading from '../helper/Loading';
 
 const FormLogin = () => {
   const email = useForm('email');
@@ -82,7 +83,7 @@ const FormLogin = () => {
         </p>
       ) }
 
-      { loading && <p>Loading...</p> }
+      { loading && <Loading /> }
     </form>
   );
 };
