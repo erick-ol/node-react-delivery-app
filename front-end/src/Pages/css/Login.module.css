@@ -1,0 +1,39 @@
+.background {
+  height: 100vh;
+  background: url('../../assets/background_login.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+
+.login h1 {
+  text-align: center;
+  font-family: var(--type-second);
+  font-weight: 700;
+  font-size: 2em;
+  width: 85%;
+  margin: 0 auto 10px;
+}
+
+.login a {
+  margin-top: 10px;
+  font-weight: 200;
+  font-size: 0.975em;
+}
+
+.login a button {
+  display: inline;
+  border: none;
+  background: transparent;
+  font-family: var(--type-first);
+  font-size: 0.975em;
+  font-weight: 400;
+  text-decoration: underline;
+  cursor: pointer;
+}

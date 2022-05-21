@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import style from './css/Input.module.css';
 
 const Input = ({
   page, label, type, name, value, onChange, error, onBlur, dataTestId,
@@ -9,10 +10,7 @@ const Input = ({
   && 'common_register__element-invalid_register'}` : null;
 
   return (
-    <div>
-      <label htmlFor={ name }>
-        {label}
-      </label>
+    <div className={ `${style.input} ${style[name]}` }>
       <input
         data-testid={ dataTestId }
         type={ type }
@@ -21,8 +19,9 @@ const Input = ({
         value={ value }
         onChange={ onChange }
         onBlur={ onBlur }
+        placeholder={ label }
       />
-      {(error) && <span data-testid={ testidError }>{error}</span>}
+      {(error) && <p data-testid={ testidError }>{error}</p>}
     </div>
   );
 };

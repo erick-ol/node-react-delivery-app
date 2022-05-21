@@ -1,0 +1,40 @@
+.background {
+  height: 100vh;
+  background: url('../../assets/background_register.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  display: flex;
+  flex-direction: column;
+}
+
+.register h1 {
+  text-align: center;
+  font-family: var(--type-second);
+  font-weight: 700;
+  font-size: 2em;
+  width: 85%;
+  margin: 0 auto 10px;
+}
+
+.register a {
+  margin-top: 10px;
+  font-weight: 200;
+  font-size: 0.975em;
+  text-align: center;
+}
+
+.register a button {
+  display: inline;
+  border: none;
+  background: transparent;
+  font-family: var(--type-first);
+  font-size: 0.975em;
+  font-weight: 400;
+  text-decoration: underline;
+  cursor: pointer;
+}

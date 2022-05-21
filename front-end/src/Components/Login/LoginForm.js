@@ -6,6 +6,8 @@ import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
 import { loginPost, resetLoginState } from '../../store/login';
 import { saveUser } from '../../store/user';
+import style from './css/LoginForm.module.css';
+import Error from '../helper/Error';
 
 const FormLogin = () => {
   const email = useForm('email');
@@ -49,7 +51,7 @@ const FormLogin = () => {
   return (
     <form onSubmit={ handleSubmit }>
       <Input
-        label="Login"
+        label="Seu e-mail"
         dataTestId="common_login__input-email"
         type="text"
         name="email"
@@ -58,7 +60,7 @@ const FormLogin = () => {
       />
 
       <Input
-        label="Senha"
+        label="Sua senha"
         dataTestId="common_login__input-password"
         type="password"
         name="password"
@@ -66,11 +68,19 @@ const FormLogin = () => {
         { ...password }
       />
 
-      { errorValidation
-        ? <Button disabled data-testid="common_login__button-login">Login</Button>
-        : <Button data-testid="common_login__button-login">Login</Button>}
+      <Button
+        disabled={ errorValidation }
+        data-testid="common_login__button-login"
+        className={ style.button }
+      >
+        Login
+      </Button>
 
-      { error && <p data-testid="common_login__element-invalid-email">{error}</p> }
+      { error && (
+        <p data-testid="common_login__element-invalid-email">
+          <Error error={ error } />
+        </p>
+      ) }
 
       { loading && <p>Loading...</p> }
     </form>

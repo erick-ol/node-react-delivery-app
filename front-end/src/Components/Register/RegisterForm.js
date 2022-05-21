@@ -6,6 +6,8 @@ import useForm from '../../Hooks/useForm';
 import Button from '../Forms/Button';
 import { registerPost, resetRegisterState } from '../../store/register';
 import { saveUser } from '../../store/user';
+import style from './css/RegisterForm.module.css';
+import Error from '../helper/Error';
 
 const RegisterForm = () => {
   const email = useForm('email');
@@ -68,11 +70,19 @@ const RegisterForm = () => {
         { ...password }
       />
 
-      { errorValidation
-        ? <Button disabled data-testid="common_register__button-register">Signup</Button>
-        : <Button data-testid="common_register__button-register">Signup</Button>}
+      <Button
+        disabled={ errorValidation }
+        data-testid="common_register__button-register"
+        className={ style.button }
+      >
+        Signup
+      </Button>
 
-      { error && <p data-testid="common_register__element-invalid_register">{error}</p> }
+      { error && (
+        <p data-testid="common_register__element-invalid_register">
+          <Error error={ error } />
+        </p>
+      ) }
 
       { loading && <p>Loading...</p> }
     </form>
