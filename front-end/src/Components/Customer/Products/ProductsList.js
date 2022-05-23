@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { productsGet } from '../../../store/products';
 import Error from '../../helper/Error';
 import ProductCard from './ProductCard';
+import style from './css/ProductList.module.css';
+import Loading from '../../helper/Loading';
 
 const ProductsList = () => {
   const { info } = useSelector((state) => state.user);
@@ -21,8 +23,8 @@ const ProductsList = () => {
   };
 
   return (
-    <div className="container">
-      {loading && <p>Loading...</p>}
+    <div className={ `container ${style.list}` }>
+      {loading && <Loading />}
       {data
       && data.map((product) => <ProductCard key={ product.id } product={ product } />)}
       <button
@@ -30,8 +32,10 @@ const ProductsList = () => {
         data-testid="customer_products__button-cart"
         disabled={ total === 0 }
         onClick={ handleClick }
+        className={ style.total }
       >
-        Total: R$
+        {'Total: '}
+        <span>R$ </span>
         <span data-testid="customer_products__checkout-bottom-value">
           {total.toFixed(2).toString().replace('.', ',')}
         </span>
