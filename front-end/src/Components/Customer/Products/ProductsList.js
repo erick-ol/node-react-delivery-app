@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { productsGet } from '../../../store/products';
+import Error from '../../helper/Error';
 import ProductCard from './ProductCard';
 
 const ProductsList = () => {
@@ -20,7 +21,7 @@ const ProductsList = () => {
   };
 
   return (
-    <div className="product-card-container">
+    <div className="container">
       {loading && <p>Loading...</p>}
       {data
       && data.map((product) => <ProductCard key={ product.id } product={ product } />)}
@@ -35,7 +36,7 @@ const ProductsList = () => {
           {total.toFixed(2).toString().replace('.', ',')}
         </span>
       </button>
-      {error && <p>{error}</p>}
+      {error && <Error error={ error } />}
     </div>
   );
 };

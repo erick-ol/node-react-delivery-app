@@ -1,7 +1,9 @@
+/* eslint-disable no-magic-numbers */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { removeProduct, updateProduct } from '../../../store/cart';
+import style from './css/ProductCard.module.css';
 
 const ProductCard = ({ product }) => {
   const { id, name, price, urlImage } = product;
@@ -45,33 +47,42 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <section className="product-card-container">
-      <div className="product-card-image-container">
-        <p
-          className="product-price"
-          data-testid={ `customer_products__element-card-price-${id}` }
-        >
-          {price.replace('.', ',')}
-        </p>
+    <div className={ style.card }>
+      <div className={ style.image }>
         <img
           src={ urlImage }
           alt={ name }
           data-testid={ `customer_products__img-card-bg-image-${id}` }
         />
       </div>
-      <div className="product-card-quantity-container">
+      <div className={ style.info }>
         <p
-          className="product-name"
+          className={ style.name }
           data-testid={ `customer_products__element-card-title-${id}` }
         >
           {name}
         </p>
-        <div className="product-card-quantity-input-container">
+        <div className={ style.price }>
+          <p className={ style.discount }>
+            {'R$ '}
+            <span data-testid={ `customer_products__element-card-price-${id}` }>
+              {((price * 1.5).toFixed(2)).toString().replace('.', ',')}
+            </span>
+          </p>
+          <p>
+            {'R$ '}
+            <span data-testid={ `customer_products__element-card-price-${id}` }>
+              {price.replace('.', ',')}
+            </span>
+          </p>
+        </div>
+        <div className={ style.quantity }>
           <button
             data-testid={ `customer_products__button-card-rm-item-${id}` }
             type="button"
             onClick={ decrement }
             disabled={ quantity === 0 }
+            className={ style.decrement }
           >
             -
           </button>
@@ -93,7 +104,7 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
