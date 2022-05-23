@@ -57,6 +57,38 @@
   background-size: 20px;
 }
 
+.number::before {
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url('../../../assets/number_icon.svg') no-repeat center;
+  background-size: contain;
+}
+
+.number input {
+  background: white;
+  border: none !important;
+}
+
+.address::before {
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url('../../../assets/address_icon.svg') no-repeat center;
+  background-size: 20px;
+}
+
+.address input {
+  background: white;
+  border: none;
+}
+
 .input p {
   color: var(--red);
   font-weight: 200;

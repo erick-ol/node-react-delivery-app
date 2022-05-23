@@ -1,0 +1,43 @@
+.cart {
+  padding-top: 10px;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin: 0 0 20px;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: white;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.quantPrice {
+  display: flex;
+  margin-top: 5px;
+}
+
+.quantPrice p {
+  margin-right: 15px;
+}
+
+.remove button {
+  background: transparent;
+  border: none;
+}

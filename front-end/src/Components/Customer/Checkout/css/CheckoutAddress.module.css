@@ -1,0 +1,105 @@
+.detailsAddress {
+  background: var(--medium-orange);
+  padding-top: 20px;
+  margin-top: 60px;
+}
+
+.detailsAddress::before {
+  position: absolute;
+  top: -30px;
+  display: block;
+  content: '';
+  height: 60px;
+  width: 100%;
+  background: url('../../../../assets/address_wave.svg') no-repeat center;
+  background-size: cover;
+  background-position: right 0;
+  z-index: -10;
+}
+
+.subtitle {
+  font-size: 1.25em;
+  color: white;
+  font-weight: 400;
+}
+
+.select {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  position: relative;
+}
+
+.select select {
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  padding-left: 45px;
+  font-family: var(--type-first);
+  font-size: 1.125em;
+  color: var(--dark-grey);
+}
+
+.select select:focus {
+  outline: none;
+}
+
+.select select {
+  -moz-appearance:none; /* Firefox */
+  -webkit-appearance:none; /* Safari and Chrome */
+  appearance:none;
+}
+
+.select::before {
+  position: absolute;
+  top: 11px;
+  left: 15px;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url('../../../../assets/seller_icon.svg') no-repeat center;
+  background-size: 20px;
+}
+
+.select::after {
+  position: absolute;
+  top: 11px;
+  right: 15px;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url('../../../../assets/down_arrow_icon.svg') no-repeat center;
+  background-size: 20px;
+}
+
+.totalFinish {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.total {
+  color: white;
+  font-size: 1.25em;
+  font-weight: 200;
+}
+
+.total span {
+  font-size: 1.75em;
+  margin-left: 10px;
+}
+
+.totalFinish button {
+  display: flex;
+  border: none;
+  background: var(--green);
+  color: white;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+  height: 40px;
+}

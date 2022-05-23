@@ -5,9 +5,11 @@ import useForm from '../../../Hooks/useForm';
 import { eraseCart } from '../../../store/cart';
 import { resetState, salesPost } from '../../../store/sale';
 import Input from '../../Forms/Input';
+import style from './css/CheckoutAddress.module.css';
+import cardIcon from '../../../assets/card_icon.svg';
 
 const CheckoutAddress = () => {
-  const [seller, setSeller] = React.useState('2');
+  const [seller, setSeller] = React.useState('');
   const { info: { token, id } } = useSelector((state) => state.user);
   const { data } = useSelector((state) => state.sale);
   const { total, cartProducts } = useSelector((state) => state.cart);
@@ -39,42 +41,59 @@ const CheckoutAddress = () => {
   };
 
   return (
-    <div>
-      <label className="checkout-address-input" htmlFor="sellers">
-        P. Vendedora Responsável
-        <select
-          value={ seller }
-          name="sellers"
-          onChange={ (e) => setSeller(e.target.value) }
-          data-testid="customer_checkout__select-seller"
-        >
-          <option value="2">
-            Fulana Pereira
-          </option>
-        </select>
-      </label>
-      <Input
-        label="Endereço"
-        dataTestId="customer_checkout__input-address"
-        type="text"
-        name="address"
-        { ...address }
-      />
-      <Input
-        label="Número"
-        dataTestId="customer_checkout__input-addressNumber"
-        type="text"
-        name="number"
-        { ...number }
-      />
-      <button
-        disabled={ error }
-        type="button"
-        data-testid="customer_checkout__button-submit-order"
-        onClick={ handleClick }
-      >
-        Finalizar Pedido
-      </button>
+    <div className={ style.detailsAddress }>
+      <div className={ `container ${style.info}` }>
+        <h2 className={ style.subtitle }>
+          Detalhes e
+          <br />
+          Endereço de entrega:
+        </h2>
+        <div className={ style.select }>
+          <select
+            value={ seller }
+            name="sellers"
+            onChange={ (e) => setSeller(e.target.value) }
+            data-testid="customer_checkout__select-seller"
+
+          >
+            <option value="" disabled>Pessoa Vendedora</option>
+            <option value="2">
+              Fulana Pereira
+            </option>
+          </select>
+        </div>
+        <Input
+          label="Endereço"
+          dataTestId="customer_checkout__input-address"
+          type="text"
+          name="address"
+          { ...address }
+        />
+        <Input
+          label="Número"
+          dataTestId="customer_checkout__input-addressNumber"
+          type="text"
+          name="number"
+          { ...number }
+        />
+        <div className={ style.totalFinish }>
+          <p className={ style.total }>
+            R$
+            <span data-testid="customer_checkout__element-order-total-price">
+              {total.toFixed(2).toString().replace('.', ',')}
+            </span>
+          </p>
+          <button
+            disabled={ error }
+            type="button"
+            data-testid="customer_checkout__button-submit-order"
+            onClick={ handleClick }
+          >
+            <img src={ cardIcon } alt="card" />
+            <span>Finalizar Pedido</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
