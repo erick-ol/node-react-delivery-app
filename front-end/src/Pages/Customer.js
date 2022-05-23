@@ -10,7 +10,9 @@ import {
 
 const Customer = () => (
   <main>
-    <Navbar />
+    <div className="relative">
+      <Navbar />
+    </div>
     <Routes>
       <Route path="/" element={ <Navigate replace to="/customer/products" /> } />
       <Route path="products" element={ <ProductsList /> } />
