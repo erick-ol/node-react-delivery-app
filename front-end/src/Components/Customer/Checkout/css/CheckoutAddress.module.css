@@ -103,3 +103,7 @@
   width: 150px;
   height: 40px;
 }
+
+.totalFinish button:disabled {
+  background-color: #96FC9F;
+}
